@@ -59,6 +59,6 @@ jobs:
         with:
           token: ${{ secrets.HEXO_CI_TOKEN }}
           repository-name: staraire/staraire.github.io 
-          branch: hexo
+          branch: master
           folder: public
           commit-message: "${{ github.event.head_commit.message }} Updated By Github Actions"
