@@ -2,6 +2,7 @@
 
 - `maupassant`
   - https://github.com/tufu9441/maupassant-hexo
+  - https://www.haomwei.com/technology/maupassant-hexo.html
 
 ## 本地部署
 
@@ -21,9 +22,12 @@ npm install hexo-cli -g
 
 3、安装主题和依赖
 
+第一次部署要执行
+
 ```
 $ git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant
 $ npm install hexo-renderer-pug --save
+$ npm install hexo-renderer-sass-next --save
 ```
 
 ```
@@ -38,3 +42,9 @@ hexo clean
 hexo g
 hexo s
 ```
+
+5、其他依赖，选择执行
+
+- 搜本站博文
+  - `self_search:true 另外两个搜索(谷歌 百度)关掉`
+  - `npm install hexo-generator-search --save`

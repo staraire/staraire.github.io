@@ -56,11 +56,10 @@ twikoo: ## See: https://twikoo.js.org
   envId: ## Tencent CloudBase envId
   region: ## Tencent CloudBase region, e.g. ap-shanghai
   path: ## Article path, e.g. window.location.pathname
-
 google_search: false ## Use Google search, true/false.
-baidu_search: true ## Use Baidu search, true/false.
+baidu_search: false ## Use Baidu search, true/false.
 swiftype: ## Your swiftype_key, e.g. m7b11ZrsT8Me7gzApciT
-self_search: false ## Use a jQuery-based local search engine, true/false.
+self_search: true ## Use a jQuery-based local search engine, true/false.
 google_analytics: ## Your Google Analytics tracking id, e.g. UA-42425684-2
 baidu_analytics: ## Your Baidu Analytics tracking id, e.g. 8006843039519956000
 microsoft_clarity: ## Your Microsoft Clarity tracking id, e.g. zg2ctuea9j
@@ -112,6 +111,9 @@ menu:
   - page: about
     directory: about/
     icon: fa-user
+  - page: history
+    directory: history/
+    icon: fa-history
   - page: rss
     directory: atom.xml
     icon: fa-rss
@@ -158,13 +160,13 @@ links:
 
 timeline:
   - num: 1
-    word: 2014/06/12-Start
-  - num: 2
-    word: 2014/11/29-XXX
-  - num: 3
-    word: 2015/02/18-DDD
-  - num: 4
-    word: More
+    word: 2023/04/12-正式建站
+  # - num: 2
+  #   word: 2014/11/29-XXX
+  # - num: 3
+  #   word: 2015/02/18-DDD
+  # - num: 4
+  #   word: More
 
 # Static files
 js: js

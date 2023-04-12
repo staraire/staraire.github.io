@@ -43,19 +43,17 @@ render_drafts: false
 post_asset_folder: false
 relative_link: false
 future: true
-highlight:
-  enable: true
-  line_number: true
-  auto_detect: false
-  tab_replace: ''
-  wrap: true
-  hljs: false
+highlight:  
+ enable: true  
+ auto_detect: true  
+ line_number: true  
+ tab_replace:  
 prismjs:
   enable: false
   preprocess: true
   line_number: true
   tab_replace: ''
-
+# mathjax: true  
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
