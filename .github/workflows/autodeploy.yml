@@ -44,7 +44,6 @@ jobs:
       - name: 安装依赖
         if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         run: |
-          npm install gulp-cli -g #全局安装gulp
           npm install --save
 
 
@@ -52,7 +51,7 @@ jobs:
         run: |
           hexo clean
           hexo generate
-          gulp
+
 
       - name: 部署到Github
         uses: JamesIves/github-pages-deploy-action@v4
