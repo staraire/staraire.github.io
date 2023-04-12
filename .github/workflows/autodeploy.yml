@@ -47,7 +47,7 @@ jobs:
           npm install gulp-cli -g #全局安装gulp
           npm install --save
           npm install hexo-renderer-pug --save
-          npm install hexo-renderer-sass --save
+
 
       - name: 生成静态文件
         run: |
