@@ -22,7 +22,7 @@ npm install hexo-cli -g
 
 3、安装主题和依赖
 
-第一次部署要执行
+- 第一次部署要执行
 
 ```
 $ git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant
@@ -34,6 +34,22 @@ $ npm install hexo-renderer-sass-next --save
 npm uninstall hexo-renderer-sass
 npm i --save hexo-renderer-sass-next
 ```
+
+- 换设备
+
+先将package.json里的
+```
+    "hexo-renderer-pug": "^3.0.0",
+    "hexo-renderer-sass-next": "^0.1.3",
+```
+这两个先删除
+然后执行 `npm install`
+再执行
+```
+$ npm install hexo-renderer-pug --save
+$ npm install hexo-renderer-sass-next --save
+```
+
 
 4、hexo三连
 
