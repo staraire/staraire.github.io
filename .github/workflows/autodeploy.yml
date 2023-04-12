@@ -1,10 +1,10 @@
-name: ×Ô¶¯²¿Êğ
-# µ±ÓĞ¸Ä¶¯ÍÆËÍµ½master·ÖÖ§Ê±£¬Æô¶¯Action
+name: è‡ªåŠ¨éƒ¨ç½²
+# å½“æœ‰æ”¹åŠ¨æ¨é€åˆ°masteråˆ†æ”¯æ—¶ï¼Œå¯åŠ¨Action
 on:
   push:
     branches:
       - hexo
-      # ¼ì²âhexo·ÖÖ§pushÊÂ¼ş 
+      # æ£€æµ‹hexoåˆ†æ”¯pushäº‹ä»¶ 
   release:
     types:
       - published
@@ -13,22 +13,22 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: ¼ì²é·ÖÖ§
+      - name: æ£€æŸ¥åˆ†æ”¯
         uses: actions/checkout@v2
         with:
           ref: hexo
 
-      - name: °²×° Node
+      - name: å®‰è£… Node
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: "18.x"
 
-      - name: °²×° Hexo
+      - name: å®‰è£… Hexo
         run: |
           export TZ='Asia/Shanghai'
           npm install hexo-cli -g
 
-      - name: »º´æ Hexo
+      - name: ç¼“å­˜ Hexo
         id: cache-npm
         uses: actions/cache@v3
         env:
@@ -41,20 +41,20 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: °²×°ÒÀÀµ
+      - name: å®‰è£…ä¾èµ–
         if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         run: |
           npm install --save
 
 
-      - name: Éú³É¾²Ì¬ÎÄ¼ş
+      - name: ç”Ÿæˆé™æ€æ–‡ä»¶
         run: |
           ls
           hexo clean
           hexo generate
 
 
-      - name: ²¿Êğµ½Github
+      - name: éƒ¨ç½²åˆ°Github
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.HEXO_CI_TOKEN }}
