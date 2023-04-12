@@ -49,6 +49,7 @@ jobs:
 
       - name: 生成静态文件
         run: |
+          ls
           hexo clean
           hexo generate
 
