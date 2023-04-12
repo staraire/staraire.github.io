@@ -1,12 +1,15 @@
 ## themes
 
-https://github.com/tufu9441/maupassant-hexo
+- `maupassant`
+  - https://github.com/tufu9441/maupassant-hexo
 
-## ±¾µØ²¿Êğ
+## æœ¬åœ°éƒ¨ç½²
 
-1¡¢°²×°nodejs£ºhttps://zhuanlan.zhihu.com/p/105715224
+1ã€å®‰è£…nodejsï¼šç‰ˆæœ¬18
 
-2¡¢°²×°hexo£º
+https://zhuanlan.zhihu.com/p/105715224
+
+2ã€å®‰è£…hexoï¼š
 
 ```
 npm install -g cnpm --registry=https://registry.npm.taobao.org
@@ -16,7 +19,7 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install hexo-cli -g
 ```
 
-3¡¢°²×°Ö÷ÌâºÍÒÀÀµ
+3ã€å®‰è£…ä¸»é¢˜å’Œä¾èµ–
 
 ```
 $ git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant
@@ -28,7 +31,7 @@ npm uninstall hexo-renderer-sass
 npm i --save hexo-renderer-sass-next
 ```
 
-4¡¢hexoÈıÁ¬
+4ã€hexoä¸‰è¿
 
 ```
 hexo clean
