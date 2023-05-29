@@ -5,9 +5,9 @@ toc: true
 # Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片
 
 
-![](vx_images/202473609249698.png =681x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/202473609249698.png)
 
-![](vx_images/554163809246253.png =681x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/554163809246253.png)
 
 ## 0 主要功能
 
@@ -93,7 +93,7 @@ markerFolder: 100_Schedule/130_计划清单/133_旅游计划/旅游记录/2022/2
 
 找到自己想要定位的点
 
-![](vx_images/508795410242007.png =864x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/508795410242007.png)
 
 将上面的经纬度复制下来，前面是纬度，后面是经度，复制到上面的lat和long后面
 
@@ -128,7 +128,7 @@ scale: 1
 
 显示效果如下
 
-![](vx_images/140550511259887.png =864x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/140550511259887.png)
 
 ### 2.3 添加标记点
 
@@ -162,7 +162,7 @@ marker: <type*>,<latitude>,<longitude>,<link*>,<description*>,<minZoom*>,<maxZoo
 marker: default,30.258943640372824,120.13927459716798,[[index.jpg]],123
 ```
 
-![](vx_images/129052011257491.png =864x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/129052011257491.png)
 
 
 #### 文件+yaml创建标记点
@@ -192,13 +192,13 @@ markerFolder: 100_Schedule/130_计划清单/133_旅游计划/旅游记录/2022/2
 
 然后在该文件夹里添加标记点文件
 
-![](vx_images/322732211254993.png =259x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/322732211254993.png)
 
 我是通过经度+纬度的方式命名的，你也可以有其他命名方式
 
 里面的yaml格式可以按照这样
 
-![](vx_images/15213811247356.png =430x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/15213811247356.png)
 
 
 最关键的就是`mapmarker`和`location`字段，其他字段可以自己定义
@@ -388,7 +388,7 @@ else:
 
 最终生成出转换后的坐标
 
-![](vx_images/540910012240490.png =681x)
+![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/540910012240490.png)
 
 
 ### 2.5 路径
