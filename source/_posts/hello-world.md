@@ -2,8 +2,6 @@
 title: Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片
 toc: true
 ---
-# Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片
-
 
 ![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/202473609249698.png)
 
