@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>黑马教程金融类安全传输平台项目部署 | StarAire's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=1.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/latest/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/latest/grids-responsive-min.min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/latest/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><script type="text/javascript" src="//lib.baomitu.com/clipboard.js/latest/clipboard.min.js"></script><script type="text/javascript" src="//lib.baomitu.com/toastr.js/latest/toastr.min.js"></script><link rel="stylesheet" href="//lib.baomitu.com/toastr.js/latest/toastr.min.css"><div class="darkmode-toggle">🌓</div><script>var prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+var toggle = document.querySelector('.darkmode-toggle');
+var html = document.querySelector('html');
+
+html.dataset.dark = localStorage.dark || prefersDarkMode.matches;
+
+toggle.addEventListener('click', () => {
+localStorage.dark = !(html.dataset.dark == 'true');
+html.dataset.dark = localStorage.dark;
+});</script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">黑马教程金融类安全传输平台项目部署</h1><a id="logo" href="/.">StarAire's Blog</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/book/"><i class="fa fa-book"> 书单</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/history/"><i class="fa fa-history"> 历史</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">黑马教程金融类安全传输平台项目部署</h1><div class="post-meta">2023-08-29</div><div class="post-content"><blockquote>
+<p>看完这个教程之后<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fg411j7SF/">金融类安全传输平台项目（C&#x2F;C++阶段五）</a>，看见评论区有个兄弟分享了源码，<a target="_blank" rel="noopener" href="https://github.com/Peachol/Secure_data_transmission">https://github.com/Peachol/Secure_data_transmission</a><br>于是我就clone下来尝试跑一下，结果发现事情并没有那么简单，花了一下午才把项目跑起来，然后目前还有报错，但是已经能让客户端和服务端通信了，故记录一下环境搭建的过程。</p>
+</blockquote>
+<h2 id="Clone源码和补充Makefile脚本"><a href="#Clone源码和补充Makefile脚本" class="headerlink" title="Clone源码和补充Makefile脚本"></a>Clone源码和补充Makefile脚本</h2><p>上面clone下来的源码，有两个文件夹，<code>server</code>和<code>client</code>，其中<code>client</code>写了Makefile，server里面没写，那我们就补充一个Makefile，把client的复制下来稍微改一改</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">src=<span class="variable">$(<span class="built_in">wildcard</span> *.cpp)</span></span><br><span class="line">objs=<span class="variable">$(<span class="built_in">patsubst</span> %.cpp,%.o,<span class="variable">$(src)</span>)</span></span><br><span class="line"></span><br><span class="line">target=serverMain</span><br><span class="line">LIBS=-lstdc++ -pthread -lssl -lcrypto -locci -lclntsh</span><br><span class="line">DEFINE=-D_GLIBCXX_USE_CXX11_ABI=0</span><br><span class="line"></span><br><span class="line"><span class="variable">$(target)</span>:<span class="variable">$(objs)</span></span><br><span class="line">	g++ -o <span class="variable">$@</span> <span class="variable">$^</span> <span class="variable">$(LIBS)</span>  <span class="variable">$(DEFINE)</span></span><br><span class="line"></span><br><span class="line"><span class="section">%.o:%.cpp</span></span><br><span class="line">	g++ -std=c++11 -c <span class="variable">$&lt;</span> </span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm -f <span class="variable">$(target)</span> <span class="variable">$(objs)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>尝试make，有报错，别急，一点一点配置环境。</p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p>客户端的环境配置比较简单，就是需要一个openssl的库</p>
+<h3 id="安装openssl"><a href="#安装openssl" class="headerlink" title="安装openssl"></a>安装openssl</h3><p>打开网址 <a target="_blank" rel="noopener" href="https://www.openssl.org/source/">https://www.openssl.org/source/</a></p>
+<p>下载1版本：<code>openssl-1.1.1v.tar.gz</code></p>
+<p>拷贝到linux里，然后解压<code>tar -xzvf</code></p>
+<p>然后执行<code>./config</code></p>
+<p>编译<code>make -j4</code></p>
+<p>安装<code>make install</code></p>
+<p>测试<code>openssl version -a</code></p>
+<p>如果报错</p>
+<p>搜索动态库路径<code>find / -name libcrypto.so</code></p>
+<p>然后将搜索到的路径放到<code>/etc/ld.so.conf</code>里：<code>vim /etc/ld.so.conf</code><br>然后生效：<code>sudo ldconfig</code></p>
+<p>再次测试：<code>openssl version -a</code></p>
+<p>通过，此时就可以编译客户端的程序了</p>
+<p>over</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>服务端主要繁琐在数据库的配置，如果没有配置过数据库，那真是要死要活，这里我原本打算直接在linux里安装oracle，但是搜了一下安装过程，简直要命，然后我就想到了docker。</p>
+<h3 id="docker安装oracle"><a href="#docker安装oracle" class="headerlink" title="docker安装oracle"></a>docker安装oracle</h3><p>docker安装oracle我是参考的这两个教程：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/momo1938/article/details/100514093">https://blog.csdn.net/momo1938/article/details/100514093</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_57179014/article/details/120182269">https://blog.csdn.net/m0_57179014/article/details/120182269</a><br>但并不能解决100%的问题。</p>
+<ul>
+<li>安装docker和启动docker</li>
+</ul>
+<p><code>sudo apt install docker.io</code><br><code>systemctl start docker</code></p>
+<p>加入开机自启：<code>systemctl enable docker</code></p>
+<ul>
+<li>安装oracle11g</li>
+</ul>
+<p><code>sudo docker pull registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</code></p>
+<p><code>&gt; sudo docker run -d -p 1521:1521 --name oracle registry.cn-hangzhou.aliyuncs.com/helowin/oracle_11g</code></p>
+<p>启动容器<code>sudo docker start oracle</code></p>
+<p>进入容器镜像<code>sudo docker exec -it oracle bash</code></p>
+<ul>
+<li>配置环境变量</li>
+</ul>
+<p>切换root权限：<code>su root</code></p>
+<blockquote>
+<p>密码是：<code>helowin</code></p>
+</blockquote>
+<p>这里默认进去是<code>oracle</code>的用户，这个用户的密码我不知道，我是通过<code>root</code>用户去修改用户的密码的<code>passwd oracle</code></p>
+<p><code>vi /etc/profile</code></p>
+<p>下面的SID这个不能错</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export ORACLE_HOME=/home/oracle/app/oracle/product/11.2.0/dbhome_2</span><br><span class="line">export ORACLE_SID=helowin </span><br><span class="line">export PATH=$ORACLEHOME/bin:PATH</span><br></pre></td></tr></table></figure>
+<p>保存<code>wq!</code>后执行<code>source /etc/profile</code></p>
+<p>切回<code>oracle</code>：<code>su - oracle</code></p>
+<ul>
+<li>进入数据库，创建用户，修改配置</li>
+</ul>
+<p><code>sqlplus / as sysdba</code></p>
+<p><code> create user SECMNG identified by SECMNG;</code> 创建内部管理员账号密码；<br><code> grant resource,connect,dba to SECMNG;</code> 将dba权限授权给内部管理员账号和密码；<br><code>ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;</code> 设置密码永不过期：<br><code>alter system set processes=1000 scope=spfile;</code> 修改数据库最大连接数据；</p>
+<p>修改后</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conn /as sysdba;--保存数据库</span><br><span class="line">shutdown immediate; --关闭数据库</span><br><span class="line">startup; --启动数据库</span><br><span class="line">show user;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置数据库客户端"><a href="#配置数据库客户端" class="headerlink" title="配置数据库客户端"></a>配置数据库客户端</h3><p>如上，数据库服务器我们已经安装和配置好了，接下来就是要配置一下服务器的客户端</p>
+<p>那么我们这个工程的服务端其实就是作为数据库的客户端(很绕)，所以我们需要配置一下这个客户端的环境</p>
+<p>我们要用到的就是这个<code>Oracle Instant Client</code></p>
+<p>从官网中(要注册才能下载)<br><a target="_blank" rel="noopener" href="https://www.oracle.com/cn/database/technologies/instant-client/linux-x86-64-downloads.html">https://www.oracle.com/cn/database/technologies/instant-client/linux-x86-64-downloads.html</a></p>
+<p>下载三个文件<br><code>instantclient-basic-linux.x64-11.2.0.4.0.zip</code><br><code>instantclient-sdk-linux.x64-11.2.0.4.0.zip</code><br><code>instantclient-sqlplus-linux.x64-11.2.0.4.0.zip</code></p>
+<p>拷贝到opt目录底下(决定了下面环境变量的配置目录)</p>
+<p>做两个软连接</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ln</span> -s libclntsh.<span class="keyword">so</span>.<span class="number">11.1</span> libclntsh.<span class="keyword">so</span></span><br><span class="line"><span class="keyword">ln</span> -s libocci.<span class="keyword">so</span>.<span class="number">11.1</span> libocci.<span class="keyword">so</span></span><br></pre></td></tr></table></figure>
+<p>在根目录下新建两级文件夹<code>/network/admin</code><br>创建文件<code>tnsnames.ora</code></p>
+<p>写入</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">helowin</span> <span class="operator">=</span></span><br><span class="line">(DESCRIPTION <span class="operator">=</span></span><br><span class="line"> (ADDRESS <span class="operator">=</span> (PROTOCOL <span class="operator">=</span> TCP)(HOST <span class="operator">=</span> <span class="number">127.0</span>.<span class="number">0.1</span>)(PORT <span class="operator">=</span> <span class="number">1521</span>))</span><br><span class="line"> (CONNECT_DATA <span class="operator">=</span></span><br><span class="line">  (SERVER <span class="operator">=</span> DEDICATED)</span><br><span class="line">  (SERVICE_NAME <span class="operator">=</span> orcl)</span><br><span class="line"> )</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>配置：<code>sudo vim /etc/profile</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">export ORACLE_SID=helowin</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">OCCI_HOME</span></span><br><span class="line">export OCCI_HOME=/opt/instantclient_11_2</span><br><span class="line">export OCCI_INCLUDE_DIR=$OCCI_HOME/sdk/include</span><br><span class="line">export OCCI_LIBRARY_PATH=$OCCI_HOME</span><br><span class="line">export LD_LIBRARY_PATH=$OCCI_HOME:$OCCI_LIBRARY_PATH</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">程序编译时搜索的库目录</span></span><br><span class="line">export LIBRARY_PATH=$LIBRARY_PATH:$OCCI_LIBRARY_PATH</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">程序编译时搜索的头文件目录</span></span><br><span class="line">export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$OCCI_INCLUDE_DIR</span><br><span class="line">export PATH=$OCCI_HOME:$PATH</span><br><span class="line">export TNS_ADMIN=$OCCI_HOME/network/admin</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>生效：<code>source /etc/profile</code></p>
+<p>验证：执行<code>sqlplus</code></p>
+<p>报错：缺少<code>libaio.so</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlplus: error while loading sharedlibraries: libaio.so.1: cannot open shared object file: No such file ordirectory</span><br></pre></td></tr></table></figure>
+
+<p>安装：<code>sudo apt-get install libaio*</code></p>
+<p>再次验证<code>sqlplus</code></p>
+<p>跳出登录界面即成功？只成功了一半。。。接下来才是噩梦的开始</p>
+<p>上面跟着做基本上能规避掉一些问题，我再强调一下有哪些点</p>
+<p>第一：配置环境变量的时候<code>export ORACLE_SID=helowin</code>这个双方不能少，docker里和本机里都要配置<br>第二：本机里的<code>tnsnames.ora</code>第一行是实例名，这个不能瞎写，我们这里是<code>helowin</code><br>如何查询：通过docker进入到数据库<code>sqlplus / as sysdba</code>，输入<code>select instance_name from v$instance;</code>可以查到，这里要一致</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">INSTANCE_NAME</span></span><br><span class="line"><span class="section">----------------</span></span><br><span class="line">helowin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>第三：上面两个软连接不要忘了，不然make编译时就会报错各种undefine </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s libclntsh.so.11.1 libclntsh.so</span><br><span class="line">ln -s libocci.so.11.1 libocci.so</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后一个就是终极问题了，上面的做完之后，应该可以make，然后执行之后，会报错</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORA-24960: the attribute  OCI_ATTR_USERNAME is greater than the maximum allowable length of 255</span><br></pre></td></tr></table></figure>
+
+<p>最后查到了这两篇文章<br><a target="_blank" rel="noopener" href="https://www.coder.work/article/7822497">https://www.coder.work/article/7822497</a><br><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/42890553/ubuntu-ora-24960-the-attribute-oci-attr-username-is-greater-than-the-maximum-al">https://stackoverflow.com/questions/42890553/ubuntu-ora-24960-the-attribute-oci-attr-username-is-greater-than-the-maximum-al</a></p>
+<p>因为occi需要g++版本低于4.8，然后我尝试了获取4.8版本的g++，但是包管理说找不到(shit！我还FQ更新了一下<code>sudo add-apt-repository ppa:ubuntu-toolchain-r/test</code>，还是找不到)<br>然后最终我在stackflow里看到了这句，<code>Also help to use -D_GLIBCXX_USE_CXX11_ABI=0 flag.</code>（stackflow yyds）</p>
+<p>然后加进了<code>makefile</code></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEFINE=-D_GLIBCXX_USE_CXX11_ABI=0</span><br></pre></td></tr></table></figure>
+<p>至此，基本上就能跑通了。</p>
+<p>完结</p>
+<blockquote>
+<p>上面的记述可能有点混乱，没办法，这是我跑通之后回忆的，前后可能会比较乱，望谅解，如果碰到问题，可以试着从我上面总结的几个问题中找找解决方法。</p>
+</blockquote>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2023/08/29/hello-world/">Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><div class="search-form"><input id="local-search-input" placeholder="Search" type="text" name="q" results="0"/><div id="local-search-result"></div></div></div><div class="widget"><div class="author-info"><a class="info-avatar" href="/about/" title="关于"><img class="nofancybox" src="/img/avatar.png"/></a><p></p><a class="info-icon" href="https://github.com/staraire" title="Github" target="_blank" style="margin-inline:5px"> <i class="fa fa-github-square" style="margin-inline:5px"></i></a><a class="info-icon" href="/atom.xml" title="RSS" target="_blank" style="margin-inline:5px"> <i class="fa fa-rss-square" style="margin-inline:5px"></i></a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2023/08/29/article1/">黑马教程金融类安全传输平台项目部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2023/08/29/hello-world/">Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2023 <a href="/." rel="nofollow">StarAire's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.js"></script><script type="text/javascript" src="/js/fancybox.js?v=1.0.0"></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/latest/jquery.fancybox.min.css"><link rel="stylesheet" type="text/css" href="/css/search.css?v=1.0.0"><script type="text/javascript" src="/js/search.js?v=1.0.0"></script><script>var search_path = 'search.xml';
+if (search_path.length == 0) {
+  search_path = 'search.xml';
+}
+var path = '/' + search_path;
+searchFunc(path, 'local-search-input', 'local-search-result');
+</script><script type="text/javascript" src="/js/copycode.js?v=1.0.0" successtext="复制成功！"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css?v=1.0.0"><script type="text/javascript" src="/js/codeblock-resizer.js?v=1.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=1.0.0"></script></div></body></html>
