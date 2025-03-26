@@ -3,14 +3,11 @@ title: Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片
 toc: true
 ---
 
-![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/202473609249698.png)
-
-![](https://alistsa.vip.cpolar.cn/d/public/pic/vx_images/554163809246253.png)
 
 ## 0 主要功能
 
 通过照片的GPS定位信息标记在地图上，鼠标放在标记点上可预览图片，标记点可绑定文件和图片，可以在里面写随想和照片，让相册里的照片跃然地图之上。
-
+<!--more-->
 ## 1 前言
 
 自从使用nas备份自己的照片之后，成批的照片管理就成了问题，照片收集起来，一堆乱糟糟，不知从何看起，所以尝试了很多照片管理工具，有把一堆照片按时间分类整理的小软件，还有一些管理照片的软件例如digikam或PhotoPrism，他们功能都很强大，可以快速的管理图片。
