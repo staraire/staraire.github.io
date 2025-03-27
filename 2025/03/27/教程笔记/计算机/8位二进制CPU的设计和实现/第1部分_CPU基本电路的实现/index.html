@@ -16,8 +16,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"staraire.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"staraire.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
     <meta name="description" content="第一部分 CPU基本电路的实现 本文是对B站UP踌躇月光出的8位二进制CPU的设计和实现的文字教程复现第一部分 CPU基本电路的实现相关 github 地址：https:&#x2F;&#x2F;github.com&#x2F;StevenBaby&#x2F;computerPS：有错误的地方请指正，谢谢！共同学习，一起进步！  概述">
 <meta property="og:type" content="article">
@@ -80,8 +81,8 @@
 <meta property="og:image" content="http://staraire.github.io/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/52.png">
 <meta property="og:image" content="http://staraire.github.io/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/53.png">
 <meta property="og:image" content="http://staraire.github.io/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/54.png">
-<meta property="article:published_time" content="2025-03-27T14:00:20.683Z">
-<meta property="article:modified_time" content="2025-03-27T14:00:20.683Z">
+<meta property="article:published_time" content="2025-03-27T14:07:57.275Z">
+<meta property="article:modified_time" content="2025-03-27T14:07:57.276Z">
 <meta property="article:author" content="StarAire">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://staraire.github.io/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/1.png">
@@ -105,7 +106,12 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
-<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/bookmark.js" defer></script><script src="/js/pjax.js" defer></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
 <script src="/js/third-party/search/local-search.js" defer></script>
@@ -113,6 +119,7 @@
 
 
 
+  <script src="/js/third-party/fancybox.js" defer></script>
 
 
 
@@ -419,7 +426,7 @@ mjx-container[display="true"] + br {
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-03-27 14:00:20" itemprop="dateCreated datePublished" datetime="2025-03-27T14:00:20+00:00">2025-03-27</time>
+      <time title="创建时间：2025-03-27 14:07:57" itemprop="dateCreated datePublished" datetime="2025-03-27T14:07:57+00:00">2025-03-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -472,7 +479,7 @@ mjx-container[display="true"] + br {
 </li>
 </ul>
 <h2 id="logiccircuit软件使用方法"><a href="#logiccircuit软件使用方法" class="headerlink" title="logiccircuit软件使用方法"></a><code>logiccircuit</code>软件使用方法</h2><p>打开软件，主窗口由以下几个部分组成</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/1.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/1.png" class="">
 
 <ul>
 <li><code>软件提供模块</code>：软件自身提供的一些基本输入输出单元和基本模块</li>
@@ -809,16 +816,16 @@ mjx-container[display="true"] + br {
 <p>打开<code>logiccircuit</code>根据上面异或和与关系搭建门电路，验证</p>
 <ul>
 <li><p><em><strong>将<code>异或(XOR)门</code>用<code>与</code>、<code>或</code>、<code>非</code>门实现出来</strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/2.png" class="">
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/2.png" class="">
 
 </li>
 <li><p><em><strong>然后用<code>异或(XOR)门</code>和<code>与门</code>共同搭建<code>半加器(Half Adder)</code></strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/3.png" class="">
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/3.png" class="">
 
 
 </li>
 <li><p><em><strong>搭建完之后通过<code>按键</code>和<code>LED</code>测试，符合真值表逻辑即可</strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/4.png" class=""></li>
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/4.png" class=""></li>
 </ul>
 <h3 id="全加器-Full-Adder-和加法器-8Adder"><a href="#全加器-Full-Adder-和加法器-8Adder" class="headerlink" title="全加器 Full Adder 和加法器 8Adder"></a>全加器 Full Adder 和加法器 8Adder</h3><p><em><strong>参考工程：<a target="_blank" rel="noopener" href="https://github.com/StevenBaby/computer/tree/main/cpu/04%20%E5%85%A8%E5%8A%A0%E5%99%A8%E5%92%8C%E5%8A%A0%E6%B3%95%E5%99%A8">04 全加器和加法器</a></strong></em></p>
 <h4 id="全加器-Full-Adder"><a href="#全加器-Full-Adder" class="headerlink" title="全加器 Full Adder"></a>全加器 Full Adder</h4><blockquote>
@@ -894,36 +901,36 @@ mjx-container[display="true"] + br {
 </tbody></table>
 <ul>
 <li><p><em><strong>通过两个<code>半加器</code>设计<code>全加器</code></strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/5.png" class="">
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/5.png" class="">
 </li>
 <li><p><em><strong>搭建完之后通过<code>按键</code>和<code>LED</code>测试，符合真值表逻辑即可</strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/6.png" class=""></li>
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/6.png" class=""></li>
 </ul>
 <blockquote>
 <p>补充：也可以通过ROM存储器地址映射的方式实现全加器</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/7.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/7.png" class="">
 
 
 <p>将<code>CI</code>、<code>A</code>、<code>B</code>当做地址的三位，<code>S(低位)</code>、<code>CO</code>当做数据的两位，填入</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/8.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/8.png" class="">
 
 <p>也可以实现全加器的功能。</p>
 <h4 id="8位加法器-8Adder"><a href="#8位加法器-8Adder" class="headerlink" title="8位加法器 8Adder"></a>8位加法器 8Adder</h4><ul>
 <li><p><em><strong>将8个<code>全加器</code>级联</strong></em></p>
-  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/9.png" class="">
+  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/9.png" class="">
 
 
 </li>
 <li><p><em><strong>制作测试器测试</strong></em></p>
 <ul>
-<li>8位开关  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/10.png" class=""></li>
-<li>8位LED  <img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/11.png" class=""></li>
+<li>8位开关  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/10.png" class=""></li>
+<li>8位LED  <img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/11.png" class=""></li>
 </ul>
 </li>
 </ul>
 <p>将其组合在一起测试</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/12.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/12.png" class="">
 
 
 
@@ -976,11 +983,11 @@ mjx-container[display="true"] + br {
 <li><em><strong>8位取反器</strong></em></li>
 </ul>
 <p>将八个<code>取反器</code>并联</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/13.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/13.png" class="">
 
 
 
-<h4 id="减法运算"><a href="#减法运算" class="headerlink" title="减法运算"></a>减法运算</h4><img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/14.png" class="">
+<h4 id="减法运算"><a href="#减法运算" class="headerlink" title="减法运算"></a>减法运算</h4><img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/14.png" class="">
 
 
 
@@ -991,10 +998,10 @@ mjx-container[display="true"] + br {
 <h3 id="数码管和译码电路设计"><a href="#数码管和译码电路设计" class="headerlink" title="数码管和译码电路设计"></a>数码管和译码电路设计</h3><h4 id="数码管简介"><a href="#数码管简介" class="headerlink" title="数码管简介"></a>数码管简介</h4><blockquote>
 <p>数码管本质上就是LED，不同的位控制不同的LED，如下图，从第0位到第7位，通过控制不同的LED来组合出数字。</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/15.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/15.png" class="">
 
 <p>通过以下电路测试一下</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/16.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/16.png" class="">
 
 
 
@@ -1271,20 +1278,20 @@ mjx-container[display="true"] + br {
 <li><em><strong>采用ROM映射<code>4路地址线</code>到8个数据上</strong></em></li>
 </ul>
 <p>将上述数字填入ROM的存储单元中</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/17.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/17.png" class="">
 
 
 <p>将按键换成输入即模块的制作</p>
 <h5 id="双十六进制数码管译码电路"><a href="#双十六进制数码管译码电路" class="headerlink" title="双十六进制数码管译码电路"></a>双十六进制数码管译码电路</h5><ul>
 <li><em><strong>将两个单十六进制数码管并联，即可制作双十六进制数码管</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/18.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/18.png" class="">
 
 
 <ul>
 <li><em><strong>将双数码管放到之前制作的加法器中，即可测试数码管</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/19.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/19.png" class="">
 
 
 
@@ -1294,14 +1301,14 @@ mjx-container[display="true"] + br {
 <ul>
 <li><em><strong>同理，向ROM中写入固定数据</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/20.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/20.png" class="">
 
 
 <ul>
 <li><em><strong>点击<code>另存为</code>，将二进制文件保存到桌面，用<code>vscode</code>打开(下载插件<code>Hex Editor</code>)</strong></em></li>
 </ul>
 <p>这里我已经写入了数据</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/21.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/21.png" class="">
 
 
 <ul>
@@ -1312,7 +1319,7 @@ mjx-container[display="true"] + br {
 <ul>
 <li><em><strong>然后将二进制文件载入</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/22.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/22.png" class="">
 
 
 <h4 id="数码管高位消隐"><a href="#数码管高位消隐" class="headerlink" title="数码管高位消隐"></a>数码管高位消隐</h4><blockquote>
@@ -1321,14 +1328,14 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>解决思路就是做一个8位的二选一选择器</p>
 </blockquote>
-<h5 id="单位二选一选择器"><a href="#单位二选一选择器" class="headerlink" title="单位二选一选择器"></a>单位二选一选择器</h5><img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/23.png" class="">
+<h5 id="单位二选一选择器"><a href="#单位二选一选择器" class="headerlink" title="单位二选一选择器"></a>单位二选一选择器</h5><img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/23.png" class="">
 
 <p>当EN为0时，输出等于B，与A无关<br>当EN为1时，输出等于A，与B无关</p>
-<h5 id="八位二选一选择器"><a href="#八位二选一选择器" class="headerlink" title="八位二选一选择器"></a>八位二选一选择器</h5><img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/24.png" class="">
+<h5 id="八位二选一选择器"><a href="#八位二选一选择器" class="headerlink" title="八位二选一选择器"></a>八位二选一选择器</h5><img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/24.png" class="">
 
 
 <p>8个二选一选择器并联</p>
-<h5 id="数码管使能"><a href="#数码管使能" class="headerlink" title="数码管使能"></a>数码管使能</h5><img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/25.png" class="">
+<h5 id="数码管使能"><a href="#数码管使能" class="headerlink" title="数码管使能"></a>数码管使能</h5><img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/25.png" class="">
 
 
 <p>如果EN为1，则数码管使能，如果EN为0，则数码管熄灭</p>
@@ -1338,7 +1345,7 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>将高位的输入接入通过或门接入使能端，当全为0时，EN为0，数码管熄灭</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/26.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/26.png" class="">
 
 
 <ul>
@@ -1347,12 +1354,12 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>同理，将两个高位的输入用或门接入使能端，同时，防止出现例如<code>208</code>时中间的零被消隐掉，中间一位的或门需要加入最高位。</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/27.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/27.png" class="">
 
 
 
 <p>再放到原来的电路中测试一下</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/28.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/28.png" class="">
 
 
 
@@ -1396,7 +1403,7 @@ mjx-container[display="true"] + br {
 <td align="center">0</td>
 </tr>
 </tbody></table>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/29.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/29.png" class="">
 
 
 <p>该电路有以下特点：</p>
@@ -1414,7 +1421,7 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>再添加一个EN，作为锁存功能(这样做的目的是方便对锁存功能进行统一管理)。具体实现如下：</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/30.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/30.png" class="">
 
 
 
@@ -1424,7 +1431,7 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>上升沿触发器：En上升沿的时候，D数据才会 写到Q</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/31.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/31.png" class="">
 
 
 <blockquote>
@@ -1436,24 +1443,24 @@ mjx-container[display="true"] + br {
 <ul>
 <li><em><strong>RS触发器</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/32.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/32.png" class="">
 
 <ul>
 <li><em><strong>D触发器</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/33.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/33.png" class="">
 
 
 <ul>
 <li><em><strong>D边沿触发器</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/34.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/34.png" class="">
 
 
 <h4 id="D边沿触发器的应用"><a href="#D边沿触发器的应用" class="headerlink" title="D边沿触发器的应用"></a>D边沿触发器的应用</h4><blockquote>
 <p>上面说到D边沿触发器可以让时钟信号一个周期完成一个动作。见下面一个应用电路：</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/35.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/35.png" class="">
 
 
 
@@ -1465,13 +1472,13 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>T触发器的T的意思是Toggle，即翻转，如果说D边沿触发器是一个周期做一个动作，T触发器就是一个周期翻转一次状态(具体的动作)，原理就是把输出的非再接入到输入。</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/36.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/36.png" class="">
 
 
 <h4 id="T触发器的应用-行波计数器"><a href="#T触发器的应用-行波计数器" class="headerlink" title="T触发器的应用-行波计数器"></a>T触发器的应用-行波计数器</h4><blockquote>
 <p>上面说到，T触发器一个周期完成一次翻转，两次翻转即构成输出的一次周期。见下面的电路</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/37.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/37.png" class="">
 
 
 <p>第一个T触发器的两个周期构成第二个T触发器的一个周期，第二个T触发器的两个周期构成第三个T触发器的一个周期，依次类推。即构成了一个8位计数器，从0到255。</p>
@@ -1479,23 +1486,23 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>上面提到的D边沿触发器可以在上升沿中将输入写入输出，利用这样的功能我们可以实现一个<code>单字节存储器</code>。</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/38.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/38.png" class="">
 
 
 <p>功能：通过Clear清0 ，Pre置1，在DI端输入8位数据，给CP一个上升沿，DI数据就被写入到DO上</p>
 <p>问题：<br>总线冲突问题：如果将多个<code>存储器</code>连到一起做数据交换，那么就会存在一个输入会连到多个输出的问题，就会发生数据冲突，那么有没有办法在需要数据交换时将两个寄存器单独连接在一起。这个办法就是三态门。</p>
-<h4 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h4><img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/39.png" class="">
+<h4 id="三态门"><a href="#三态门" class="headerlink" title="三态门"></a>三态门</h4><img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/39.png" class="">
 
 
 <p>三态门的作用就是当B失能时，输入与输出处于断开状态(高阻态)，当B使能时，输入与输出处于连接状态。</p>
 <p>将八个三态门并联得到八位三态门电路</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/40.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/40.png" class="">
 
 <p>这样我们就可以解决上面说的总线冲突问题</p>
 <h4 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h4><blockquote>
 <p><code>存储器</code>加上<code>三态门</code>可以构成<code>寄存器</code></p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/41.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/41.png" class="">
 
 <ul>
 <li>端口S仅做比较有三态门和无三态门时的区别，实际并无此端口</li>
@@ -1503,11 +1510,11 @@ mjx-container[display="true"] + br {
 <li>当R使能时，三态门连通，存储器输出连到寄存器输出；当R不使能时，寄存器输出处于高阻态。</li>
 </ul>
 <p>R没有使能</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/42.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/42.png" class="">
 
 
 <p>R使能后</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/43.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/43.png" class="">
 
 
 <h3 id="三八译码器和存储器组织"><a href="#三八译码器和存储器组织" class="headerlink" title="三八译码器和存储器组织"></a>三八译码器和存储器组织</h3><p><em><strong>参考工程：<a target="_blank" rel="noopener" href="https://github.com/StevenBaby/computer/tree/main/cpu/13%20%E4%B8%89%E5%85%AB%E8%AF%91%E7%A0%81%E5%99%A8%E5%92%8C%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87">13 三八译码器和存储器组织</a></strong></em></p>
@@ -1636,18 +1643,18 @@ mjx-container[display="true"] + br {
 </tr>
 </tbody></table>
 <p>逻辑电路</p>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/44.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/44.png" class="">
 
 
 <h4 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h4><blockquote>
 <p>前面我们实现了一个1byte的存储器，或者说寄存器，现在我们要实现一个8byte寄存器，基本思路就是用一个三八译码器实现三位地址线对8个1byte存储器的选择。</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/45.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/45.png" class="">
 
 <ul>
 <li><em><strong>测试读写功能</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/46.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/46.png" class="">
 
 
 
@@ -1658,7 +1665,7 @@ mjx-container[display="true"] + br {
 <blockquote>
 <p>这里首先谈一下<code>位扩展</code>，例如前面是8x1byte存储器，现在扩展为8x2byte存储器，只要将输入输出的位扩宽即可</p>
 </blockquote>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/47.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/47.png" class="">
 
 <blockquote>
 <p>其次是<code>字扩展</code>，例如前面是8x1byte存储器，现在扩展为16x1byte存储器，扩宽一位地址线(加一个二选一)即可</p>
@@ -1666,13 +1673,13 @@ mjx-container[display="true"] + br {
 <ul>
 <li><em><strong>加宽高位地址线</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/48.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/48.png" class="">
 
 
 <ul>
 <li><em><strong>加宽低位地址线</strong></em></li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/49.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/49.png" class="">
 
 <h4 id="存储器读写问题"><a href="#存储器读写问题" class="headerlink" title="存储器读写问题"></a>存储器读写问题</h4><blockquote>
 <p>这里存储器的读和写是独立开来的，这样会在某些时刻造成冲突，所以要解决这个问题，就是让存储器在写的时候没法读。做出以下修改：</p>
@@ -1680,28 +1687,28 @@ mjx-container[display="true"] + br {
 <ul>
 <li>单字节存储器</li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/50.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/50.png" class="">
 
 
 
 <ul>
 <li>8x1byte存储器</li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/51.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/51.png" class="">
 
 <ul>
 <li>8x2byte存储器</li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/52.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/52.png" class="">
 
 <ul>
 <li>16x1byteH存储器</li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/53.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/53.png" class="">
 <ul>
 <li>16x1byteL存储器</li>
 </ul>
-<img src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/54.png" class="">
+<img data-src="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC1%E9%83%A8%E5%88%86_CPU%E5%9F%BA%E6%9C%AC%E7%94%B5%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0/54.png" class="">
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script>
 <link rel="stylesheet" href="/css/markmap.css">
 
@@ -1738,8 +1745,8 @@ mjx-container[display="true"] + br {
             <div class="post-nav-item">
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC3%E9%83%A8%E5%88%86_CPU%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="第三部分 CPU指令系统的实现">
-                  第三部分 CPU指令系统的实现 <i class="fa fa-angle-right"></i>
+                <a href="/2025/03/27/%E6%95%99%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA/8%E4%BD%8D%E4%BA%8C%E8%BF%9B%E5%88%B6CPU%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%92%8C%E5%AE%9E%E7%8E%B0/%E7%AC%AC2%E9%83%A8%E5%88%86_CPU%E5%BE%AE%E6%9C%BA%E6%9E%B6%E6%9E%84%E7%9A%84%E5%AE%9E%E7%8E%B0/" rel="next" title="第二部分 CPU微机架构的实现">
+                  第二部分 CPU微机架构的实现 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
