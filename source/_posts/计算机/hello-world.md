@@ -1,6 +1,8 @@
 ---
 title: Obsidian进阶插件Obsidian Leaflet用法之管理自己的旅行照片
 toc: true
+categories:
+  - 计算机
 ---
 
 
