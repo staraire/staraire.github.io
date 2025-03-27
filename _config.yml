@@ -122,3 +122,13 @@ hexo_markmap:
   darkThemeCssSelector: '.dark'
   CDN: 'fastly' 
   customCDN: 'https://fastly.jsdelivr.net/npm/'
+
+# # 站点地图配置
+# sitemap:
+#   path: sitemap.xml  # 输出文件名（默认即可）
+#   rel: false         # 是否生成 rel-sitemap（一般不需要）
+#   tags: true         # 包含标签页
+#   categories: true   # 包含分类页
+#   exclude:
+#     - /404.html      # 排除的路径
+#     - /private/**    # 排除私有目录
