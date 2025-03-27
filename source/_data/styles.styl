@@ -1,0 +1,146 @@
+// 主页文章添加阴影效果
+.post-block {
+   padding: 25px;
+   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+  }
+
+// 主页文章更紧凑
+.posts-expand .post-block:first-of-type {
+  padding-top: 40px;
+}
+
+.posts-expand .post-block:not(:first-of-type) {
+  margin-top: 60px;
+}
+
+// 翻页按键边缘与 post 边缘对齐，翻页按键与 post 间距缩小
+.pagination {
+  margin: 60px 0 0;
+}
+
+.pagination .prev, .pagination .next, .pagination .page-number, .pagination .space {
+    margin: -1px 10px 0 0;
+    padding: 0 10px;
+}
+
+// 去掉归档页的文档统计
+.posts-collapse .post-content .collection-title {
+  display: none !important;
+}
+
+// 竖线是这个 before 元素控制的，改细，同时稍微一动位置与标题栏前的圆心对齐
+// 左侧的竖线原来太抢眼了，这里弱化竖线的视觉效果
+.posts-collapse .post-content::before {
+  background: var(--archive-post-content-before-color)
+  margin-left: -0.5px
+  top: 1em
+  width: 1px
+}
+
+// 年份缩进，看起来就更有层次感
+.posts-collapse .post-content .collection-year {
+  margin: 40px 0 0 0;
+}
+
+// 去掉掉年份前的圆点
+.posts-collapse .post-content .collection-year::before {
+  display: none;
+}
+
+// 调整归档页面的上的间距
+.posts-collapse .post-content .collection-header {
+  margin: 0 0 0 0;
+}
+
+// 文档标题字体整体放大，强调一下视觉效果
+.posts-collapse .post-content .post-header{
+  font-size: 1.1em
+}
+// 文档标题前的日期字体方法，原来其实是个缩小效果，这么写之后就取消了缩小效果
+.posts-collapse .post-content .post-meta-container {
+  font-size: inherit; /* or use initial or unset */
+}
+// 减小页面最上方的空隙
+.archive .post-block:first-of-type {
+    padding-top: 0;
+}
+
+:root {
+  --archive-post-content-before-color: #f5f5f5
+}
+
+if (hexo-config('darkmode')) {
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --archive-post-content-before-color: #454545
+    }
+  }
+}
+
+// 这里竖线的颜色使用到了 css 的变量，然后在 :root 上面定义了日间和夜间模式使用的颜色值
+// 这个定义变量的方式从next代码里趴出来的
+.posts-collapse .post-content::before {
+  background: var(--archive-post-content-before-color)
+  margin-left: -0.5px
+  top: 1em
+  width: 1px
+}
+
+// 年份数量统计有背景色，这里取消掉
+.posts-collapse .post-content .collection-year::before {
+  display: none;
+}
+
+// 归档页 title 添加选中的加粗放大效果和动画
+.posts-collapse .post-content .post-title {
+  transition: font-size 0.1s ease, font-weight 0.1s ease; /* 添加过渡动画 */
+}
+
+.posts-collapse .post-content .post-title:hover {
+  font-weight: bold;
+  font-size: 1.1em; /* 放大字体大小，1.1em 表示放大 10% */
+}
+
+// 将链接文本设置为蓝色，鼠标划过时文字颜色加深，并显示下划线。
+.post-body p a {
+  color: #0593d3;
+  border-bottom: none;
+  &:hover {
+    color: #0477ab;
+    text-decoration: underline;
+  }
+}
+
+
+// ========== 主内容区加宽 ==========
+.main-inner {
+  width: 70%;  // 默认70%-75%，调整为90%
+  max-width: 1400px;  // 防止超宽屏过大
+  padding: 40px 0;  // 调整内边距
+
+  +tablet() {
+    width: 85%;  // 平板适配
+  }
+  +mobile() {
+    width: 95%;  // 手机端保持窄边距
+    padding: 20px 0;
+  }
+}
+
+// ========== 文章区域专项加宽 ==========
+.post-block {
+  width: 100% !important;  // 强制占满主区域
+  .post-content {
+    max-width: none;  // 移除内容限制
+  }
+}
+
+// ========== 代码块同步加宽 ==========
+.highlight {
+  width: 100%;
+  margin: 0 auto 20px;
+  pre {
+    padding: 15px !important;  // 增加代码块内边距
+  }
+}
