@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"staraire.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="思维导图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="思维导图-第2章 嵌入式系统硬件基础知识">
+<meta property="og:url" content="http://staraire.github.io/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC2%E7%AB%A0/index.html">
+<meta property="og:site_name" content="StarAire&#39;s Blog">
+<meta property="og:description" content="思维导图">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-27T15:00:02.000Z">
+<meta property="article:modified_time" content="2025-03-27T08:12:30.846Z">
+<meta property="article:author" content="StarAire">
+<meta property="article:tag" content="思维导图">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://staraire.github.io/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC2%E7%AB%A0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://staraire.github.io/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC2%E7%AB%A0/","path":"/pages/嵌入式/软考/思维导图/第2章/","title":"思维导图-第2章 嵌入式系统硬件基础知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>思维导图-第2章 嵌入式系统硬件基础知识 | StarAire's Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">StarAire's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="StarAire"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">StarAire</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/staraire" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;staraire" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://staraire.github.io/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC2%E7%AB%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="StarAire">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="StarAire's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="思维导图-第2章 嵌入式系统硬件基础知识 | StarAire's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          思维导图-第2章 嵌入式系统硬件基础知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-27 15:00:02 / 修改时间：08:12:30" itemprop="dateCreated datePublished" datetime="2025-03-27T15:00:02+00:00">2025-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">嵌入式</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/" itemprop="url" rel="index"><span itemprop="name">软考</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><div class="markmap-wrap" id="hmm-618b72bd4b" >
+      <script type="application/json">{"content":"<a href=\"/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/\">&#x7b2c;2&#x7ae0; &#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;&#x786c;&#x4ef6;&#x57fa;&#x7840;&#x77e5;&#x8bc6;</a>","children":[{"content":"2.1 &#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;&#x786c;&#x4ef6;&#x6982;&#x8ff0;","children":[],"payload":{"tag":"h2","lines":"3,4"}},{"content":"&#x6570;&#x5b57;&#x7535;&#x8def;&#x57fa;&#x7840;","children":[{"content":"\n<p data-lines=\"7,8\">&#x4fe1;&#x53f7;&#x7279;&#x5f81;</p>","children":[{"content":"&#x73b0;&#x4ee3;&#x8ba1;&#x7b97;&#x673a;&#x7684;&#x7535;&#x5b50;&#x5143;&#x5668;&#x4ef6;&#x662f;&#x6570;&#x5b57;&#x5f0f;&#x7684;&#xff0c;&#x6570;&#x5b57;&#x5f0f;&#x7684;&#x7535;&#x5b50;&#x5143;&#x5668;&#x4ef6;&#x5de5;&#x4f5c;&#x72b6;&#x6001;&#x662f;&#x4e8c;&#x503c;&#x7535;&#x5e73;&#xff1a;<code>&#x9ad8;&#x7535;&#x5e73;</code>&#x548c;<code>&#x4f4e;&#x7535;&#x5e73;</code>&#x3002;","children":[{"content":"&#x7528;&quot;&#x903b;&#x8f91;&#x771f;&quot;&#x3001;&quot;1&quot;&#x6216;&quot;&#x786e;&#x5b9a;&quot;&#x6765;&#x8868;&#x793a;&#x9ad8;&#x7535;&#x5e73;&#x3002;","children":[],"payload":{"tag":"li","lines":"9,10"}},{"content":"&#x7528;&quot;&#x903b;&#x8f91;&#x5047;&quot;&#x3001;&quot;0&quot;&#x6216;&quot;&#x4e0d;&#x786e;&#x5b9a;&quot;&#x6765;&#x8868;&#x793a;&#x4f4e;&#x7535;&#x5e73;&#x3002;","children":[],"payload":{"tag":"li","lines":"10,11"}},{"content":"1&#x548c;0&#x662f;&#x4e92;&#x8865;&#x4fe1;&#x53f7;&#x3002;","children":[],"payload":{"tag":"li","lines":"11,12"}}],"payload":{"tag":"li","lines":"8,12"}},{"content":"&#x6839;&#x636e;&#x7535;&#x8def;&#x662f;&#x5426;&#x6709;&#x5b58;&#x50a8;&#x529f;&#x80fd;&#xff0c;&#x5c06;&#x903b;&#x8f91;&#x7535;&#x8def;&#x5206;&#x4e3a;&#xff1a;<code>&#x7ec4;&#x5408;&#x903b;&#x8f91;&#x7535;&#x8def;</code>&#x548c;<code>&#x65f6;&#x5e8f;&#x903b;&#x8f91;&#x7535;&#x8def;</code>&#x3002;","children":[{"content":"&#x7ec4;&#x5408;&#x903b;&#x8f91;&#x7535;&#x8def;&#xff1a;&#x6ca1;&#x6709;&#x5b58;&#x50a8;&#x529f;&#x80fd;&#xff0c;&#x8f93;&#x51fa;&#x503c;&#x4ec5;&#x53d6;&#x51b3;&#x4e8e;&#x5f53;&#x524d;&#x7684;&#x8f93;&#x5165;&#x503c;&#x3002;","children":[],"payload":{"tag":"li","lines":"13,14"}},{"content":"&#x65f6;&#x5e8f;&#x903b;&#x8f91;&#x7535;&#x8def;&#xff1a;&#x6709;&#x5b58;&#x50a8;&#x529f;&#x80fd;&#xff0c;&#x8f93;&#x51fa;&#x503c;&#x4e0d;&#x4ec5;&#x53d6;&#x51b3;&#x4e8e;&#x5f53;&#x524d;&#x7684;&#x8f93;&#x5165;&#x503c;&#xff0c;&#x8fd8;&#x53d6;&#x51b3;&#x4e8e;&#x7535;&#x8def;&#x7684;&#x5f53;&#x524d;&#x72b6;&#x6001;&#x3002;","children":[],"payload":{"tag":"li","lines":"14,15"}}],"payload":{"tag":"li","lines":"12,15"}}],"payload":{"tag":"li","lines":"7,15"}},{"content":"\n<p data-lines=\"15,16\">&#x7ec4;&#x5408;&#x903b;&#x8f91;&#x7535;&#x8def;&#x548c;&#x65f6;&#x5e8f;&#x903b;&#x8f91;&#x7535;&#x8def;</p>","children":[{"content":"&#x7ec4;&#x5408;&#x903b;&#x8f91;&#x7535;&#x8def;","children":[{"content":"&#x771f;&#x503c;&#x8868;","children":[],"payload":{"tag":"li","lines":"17,18"}},{"content":"&#x5e03;&#x5c14;&#x4ee3;&#x6570;","children":[{"content":"&#x5e03;&#x5c14;&#x4ee3;&#x6570;&#x6709;&#x4e09;&#x79cd;&#x7ecf;&#x5178;&#x64cd;&#x4f5c;&#x7b26;","children":[{"content":"OR(&quot;&#x6216;&quot;)&#x64cd;&#x4f5c;&#x7b26;","children":[],"payload":{"tag":"li","lines":"20,21"}},{"content":"AND(&quot;&#x4e0e;&quot;)&#x64cd;&#x4f5c;&#x7b26;","children":[],"payload":{"tag":"li","lines":"21,22"}},{"content":"NOT(&quot;&#x975e;&quot;)&#x64cd;&#x4f5c;&#x7b26;","children":[],"payload":{"tag":"li","lines":"22,23"}}],"payload":{"tag":"li","lines":"19,23"}}],"payload":{"tag":"li","lines":"18,23"}},{"content":"&#x95e8;&#x7535;&#x8def;","children":[{"content":"&#x4e0e;&#x6216;&#x975e;&#x95e8;","children":[],"payload":{"tag":"li","lines":"24,25"}}],"payload":{"tag":"li","lines":"23,25"}},{"content":"&#x8bd1;&#x7801;&#x5668;","children":[],"payload":{"tag":"li","lines":"25,26"}},{"content":"&#x6570;&#x636e;&#x9009;&#x62e9;&#x5668;&#x548c;&#x6570;&#x636e;&#x5206;&#x914d;&#x5668;","children":[],"payload":{"tag":"li","lines":"26,27"}}],"payload":{"tag":"li","lines":"16,27"}},{"content":"&#x65f6;&#x5e8f;&#x903b;&#x8f91;&#x7535;&#x8def;","children":[{"content":"&#x65f6;&#x949f;&#x4fe1;&#x53f7;","children":[],"payload":{"tag":"li","lines":"28,29"}},{"content":"&#x89e6;&#x53d1;&#x5668;","children":[{"content":"&#x6309;&#x65f6;&#x949f;&#x63a7;&#x5236;&#x65b9;&#x5f0f;&#x5206;: &#x7535;&#x4f4d;&#x89e6;&#x53d1;&#x3001;&#x8fb9;&#x6cbf;&#x89e6;&#x53d1;&#x3001;&#x4e3b;-&#x4ece;&#x89e6;&#x53d1;","children":[],"payload":{"tag":"li","lines":"30,31"}},{"content":"&#x6309;&#x529f;&#x80fd;&#x5206;&#x7c7b;: &#x6709;R-S&#x578b;&#x3001;D&#x578b;&#x3001;J-K&#x578b;","children":[],"payload":{"tag":"li","lines":"31,32"}}],"payload":{"tag":"li","lines":"29,32"}},{"content":"&#x5bc4;&#x5b58;&#x5668;&#x548c;&#x79fb;&#x4f4d;&#x5668;","children":[],"payload":{"tag":"li","lines":"32,33"}}],"payload":{"tag":"li","lines":"27,33"}}],"payload":{"tag":"li","lines":"15,33"}},{"content":"\n<p data-lines=\"33,34\">&#x4fe1;&#x53f7;&#x8f6c;&#x6362;</p>","children":[{"content":"\n<p data-lines=\"34,35\">&#x6570;&#x5b57;&#x96c6;&#x6210;&#x7535;&#x8def;&#x7684;&#x5206;&#x7c7b;</p>","children":[{"content":"&#x6309;&#x5f00;&#x5173;&#x5143;&#x4ef6;&#x7684;&#x4e0d;&#x540c;&#x5206;&#x4e3a;","children":[{"content":"<code>&#x53cc;&#x6781;&#x6027;</code>&#x96c6;&#x6210;&#x7535;&#x8def;&#xff0c;&#x91c7;&#x7528;<code>&#x6676;&#x4f53;&#x7ba1;</code>&#x4f5c;&#x4e3a;&#x5f00;&#x5173;&#x5143;&#x4ef6;&#x3002;","children":[],"payload":{"tag":"li","lines":"36,37"}},{"content":"<code>&#x91d1;&#x5c5e;&#x6c27;&#x5316;&#x7269;&#x534a;&#x5bfc;&#x4f53;(Metal-oxide Semicronductor, MOS)</code>&#x96c6;&#x6210;&#x7535;&#x8def;(&#x53c8;&#x79f0;<code>&#x5355;&#x6781;&#x6027;</code>&#x96c6;&#x6210;&#x7535;&#x8def;)&#xff0c;&#x91c7;&#x7528;<code>&#x7edd;&#x7f18;&#x6805;&#x578b;&#x573a;&#x6548;&#x5e94;&#x7ba1;</code>&#x4f5c;&#x4e3a;&#x5f00;&#x5173;&#x5143;&#x4ef6;&#x3002;","children":[],"payload":{"tag":"li","lines":"37,38"}}],"payload":{"tag":"li","lines":"35,38"}},{"content":"<code>&#x53cc;&#x6781;&#x6027;</code>&#x96c6;&#x6210;&#x7535;&#x8def;&#x5206;&#x7c7b;","children":[{"content":"&#x5e94;&#x7528;&#x6700;&#x591a;&#x7684;&#x662f;<code>&#x6676;&#x4f53;&#x7ba1;-&#x6676;&#x4f53;&#x7ba1;&#x903b;&#x8f91;&#x7535;&#x8def;(Transistor-Transistor Logic, TTL)</code>","children":[{"content":"&#x5f00;&#x5173;&#x901f;&#x5ea6;&#x5feb;&#xff0c;&#x6297;&#x5e72;&#x6270;&#x5f3a;&#xff0c;&#x8f93;&#x51fa;&#x80fd;&#x529b;&#x5f3a;&#x3002;","children":[],"payload":{"tag":"li","lines":"40,41"}}],"payload":{"tag":"li","lines":"39,41"}},{"content":"&#x5176;&#x4ed6;","children":[{"content":"<code>&#x4e8c;&#x6781;&#x7ba1;-&#x4e09;&#x6781;&#x7ba1;&#x903b;&#x8f91;( Diode-Transistor Logic, DTL)</code>","children":[],"payload":{"tag":"li","lines":"42,43"}},{"content":"<code>&#x9ad8;&#x9608;&#x503c;&#x903b;&#x8f91;( High Threshold Logic, HLT)</code>","children":[],"payload":{"tag":"li","lines":"43,44"}},{"content":"<code>&#x53d1;&#x5c04;&#x6781;&#x8026;&#x5408;(Emitter Coupled Logic, ECL)</code>","children":[{"content":"&#x4e3b;&#x8981;&#x7528;&#x4e8e;&#x9ad8;&#x901f;&#x3001;&#x8d85;&#x9ad8;&#x901f;&#x6570;&#x5b57;&#x7cfb;&#x7edf;&#x4e2d;&#x3002;","children":[],"payload":{"tag":"li","lines":"45,46"}}],"payload":{"tag":"li","lines":"44,46"}},{"content":"<code>&#x96c6;&#x6210;&#x6ce8;&#x5165;&#x903b;&#x8f91;(Integrated Injection Logic, IIL)</code>&#x7b49;&#x3002;","children":[],"payload":{"tag":"li","lines":"46,47"}}],"payload":{"tag":"li","lines":"41,47"}}],"payload":{"tag":"li","lines":"38,47"}},{"content":"<code>&#x5355;&#x6781;&#x6027;</code>&#x96c6;&#x6210;&#x7535;&#x8def;&#x5206;&#x7c7b;","children":[{"content":"&#x6309;&#x6240;&#x7528;MOS&#x7ba1;&#x7c7b;&#x578b;&#x7684;&#x4e0d;&#x540c;&#x5206;&#x4e3a;","children":[{"content":"<code>PMOS</code>","children":[{"content":"&#x5f88;&#x5c11;&#x4f7f;&#x7528;","children":[],"payload":{"tag":"li","lines":"50,51"}}],"payload":{"tag":"li","lines":"49,51"}},{"content":"<code>NMOS</code>","children":[{"content":"&#x5f00;&#x542f;&#x7535;&#x538b;&#x8f83;&#x4f4e;&#xff0c;&#x4ecd;&#x5728;&#x4f7f;&#x7528;&#x3002;","children":[],"payload":{"tag":"li","lines":"52,53"}}],"payload":{"tag":"li","lines":"51,53"}},{"content":"<strong><code>CMOS</code></strong>","children":[{"content":"&#x4e92;&#x8865;&#x578b;&#x91d1;&#x5c5e;&#x6c27;&#x5316;&#x7269;&#x534a;&#x5bfc;&#x4f53;(Complementary Metal-Oxide-Semiconductor, CMOS)&#x96c6;&#x6210;&#x7535;&#x8def;&#xff0c;&#x53c8;&#x79f0;&#x4e92;&#x8865;&#x578b;MOS&#x96c6;&#x6210;&#x7535;&#x8def;&#x3002;","children":[],"payload":{"tag":"li","lines":"54,55"}},{"content":"CMOS&#x7535;&#x8def;&#x5177;&#x6709;&#x529f;&#x8017;&#x4f4e;&#x3001;&#x6297;&#x5e72;&#x6270;&#x80fd;&#x529b;&#x5f3a;&#x3001;&#x53ef;&#x9760;&#x6027;&#x9ad8;&#x7b49;&#x4f18;&#x70b9;&#x3002;","children":[],"payload":{"tag":"li","lines":"55,56"}},{"content":"CMOS&#x7535;&#x8def;&#x5e7f;&#x6cdb;&#x5e94;&#x7528;&#x4e8e;&#x6570;&#x5b57;&#x96c6;&#x6210;&#x7535;&#x8def;&#x4e2d;&#x3002;","children":[],"payload":{"tag":"li","lines":"56,58"}}],"payload":{"tag":"li","lines":"53,58"}}],"payload":{"tag":"li","lines":"48,58"}}],"payload":{"tag":"li","lines":"47,58"}}],"payload":{"tag":"li","lines":"34,58"}},{"content":"\n<p data-lines=\"58,59\">&#x5e38;&#x7528;&#x7535;&#x5e73;&#x63a5;&#x53e3;&#x6280;&#x672f;</p>","children":[{"content":"&#x76ee;&#x524d;&#x4e3b;&#x6d41;&#x8fd0;&#x7528;&#x8fd9;&#x4e09;&#x79cd;&#x96c6;&#x6210;&#x7535;&#x8def;: <code>TTL</code>&#x3001;<code>CMOS</code>&#x548c;<code>ECL</code>&#x3002;","children":[],"payload":{"tag":"li","lines":"59,60"}},{"content":"TTL&#x548c;ECL&#x7535;&#x5e73;&#x8f6c;&#x6362;&#x63a5;&#x53e3;","children":[{"content":"TTL-&gt;ECL&#x8f6c;&#x6362;","children":[],"payload":{"tag":"li","lines":"61,62"}},{"content":"ECL-&gt;TTL&#x8f6c;&#x6362;","children":[],"payload":{"tag":"li","lines":"62,63"}}],"payload":{"tag":"li","lines":"60,63"}},{"content":"TTL&#x548c;CMOS&#x7535;&#x5e73;&#x8f6c;&#x6362;&#x63a5;&#x53e3;","children":[{"content":"TTL-&gt;CMOS&#x8f6c;&#x6362;","children":[],"payload":{"tag":"li","lines":"64,65"}},{"content":"CMOS-&gt;TTL&#x8f6c;&#x6362;","children":[],"payload":{"tag":"li","lines":"65,67"}}],"payload":{"tag":"li","lines":"63,67"}}],"payload":{"tag":"li","lines":"58,67"}}],"payload":{"tag":"li","lines":"33,67"}},{"content":"\n<p data-lines=\"67,68\">&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;</p>","children":[{"content":"&#x4e3a;&#x4e86;&#x65b9;&#x4fbf;&#x8bbe;&#x8ba1;&#x96c6;&#x6210;&#x7535;&#x8def;&#xff0c;&#x53d1;&#x660e;&#x4e86;&#x73b0;&#x573a;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;(FPLD)","children":[{"content":"&#x76ee;&#x524d;&#x5e7f;&#x6cdb;&#x4f7f;&#x7528;&#x7684;&#x662f;<code>&#x73b0;&#x573a;&#x53ef;&#x7f16;&#x7a0b;&#x95e8;&#x9635;&#x5217;(FPGA)</code>&#x548c;<code>&#x590d;&#x6742;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;(CPLD)</code>","children":[],"payload":{"tag":"li","lines":"69,70"}}],"payload":{"tag":"li","lines":"68,70"}},{"content":"&#x53d1;&#x5c55;&#x5386;&#x53f2;","children":[{"content":"&#x65e9;&#x671f;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;&#x53ea;&#x6709;<code>&#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;(PROM)</code>&#x3001;<code>&#x7d2b;&#x5916;&#x7ebf;&#x53ef;&#x64e6;&#x9664;&#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;(EPROM)</code>&#x548c;<code>&#x7535;&#x53ef;&#x64e6;&#x9664;&#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;(EEPROM)</code>&#x4e09;&#x79cd;&#x3002;","children":[],"payload":{"tag":"li","lines":"71,72"}},{"content":"&#x5176;&#x540e;&#x51fa;&#x73b0;&#x4e86;&#x7ed3;&#x6784;&#x4e0a;&#x7a0d;&#x590d;&#x6742;&#x7684;&#x53ef;&#x7f16;&#x7a0b;&#x82af;&#x7247;&#xff0c;&#x5373;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;(PLD)&#x3002;","children":[{"content":"&#x5178;&#x578b;&#x7684;PLD&#x7531;&#x4e00;&#x4e2a;&#x4e0e;&#x95e8;&#x548c;&#x6216;&#x95e8;&#x9635;&#x5217;&#x7ec4;&#x6210;&#xff0c;&#x7136;&#x540e;&#x7ec4;&#x6210;&#x4efb;&#x610f;&#x903b;&#x8f91;&#x95e8;&#x3002;","children":[],"payload":{"tag":"li","lines":"73,74"}},{"content":"&#x8fd9;&#x4e00;&#x9636;&#x6bb5;&#x7684;&#x4ea7;&#x54c1;&#x4e3b;&#x8981;&#x662f;<code>&#x53ef;&#x7f16;&#x7a0b;&#x9635;&#x5217;&#x903b;&#x8f91;&#x5668;&#x4ef6;(PAL)</code>&#x548c;<code>&#x901a;&#x7528;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;(GAL)</code>","children":[],"payload":{"tag":"li","lines":"74,75"}},{"content":"&#x8fc7;&#x4e8e;&#x7b80;&#x5355;&#x7684;&#x7ed3;&#x6784;&#x4f7f;&#x5f97;&#x4ed6;&#x4eec;&#x53ea;&#x80fd;&#x5b9e;&#x73b0;&#x89c4;&#x6a21;&#x8f83;&#x5c0f;&#x7684;&#x7535;&#x8def;&#x3002;","children":[],"payload":{"tag":"li","lines":"75,76"}}],"payload":{"tag":"li","lines":"72,76"}},{"content":"&#x73b0;&#x5728;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;&#x5df2;&#x7ecf;&#x53d1;&#x5c55;&#x5230;&#x4e86;<code>&#x53ef;&#x7f16;&#x7a0b;&#x95e8;&#x9635;&#x5217;(FPGA)</code>&#x548c;<code>&#x590d;&#x6742;&#x53ef;&#x7f16;&#x7a0b;&#x903b;&#x8f91;&#x5668;&#x4ef6;(CPLD)</code>&#x3002;","children":[{"content":"&#x53ef;&#x5b9e;&#x73b0;&#x5927;&#x89c4;&#x6a21;&#x7535;&#x8def;&#x3002;","children":[],"payload":{"tag":"li","lines":"77,82"}}],"payload":{"tag":"li","lines":"76,82"}}],"payload":{"tag":"li","lines":"70,82"}}],"payload":{"tag":"li","lines":"67,82"}}],"payload":{"tag":"h2","lines":"5,6"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x5fae;&#x5904;&#x7406;&#x5668;&#x57fa;&#x7840;","children":[{"content":"&#x4ecb;&#x7ecd;","children":[{"content":"&#x5904;&#x7406;&#x5668;&#x7684;&#x67b6;&#x6784;&#x5206;&#x4e3a;","children":[{"content":"&#x51af;&#x8bfa;&#x4f9d;&#x66fc;&#x67b6;&#x6784;","children":[],"payload":{"tag":"li","lines":"86,87"}},{"content":"&#x54c8;&#x4f5b;&#x67b6;&#x6784;","children":[],"payload":{"tag":"li","lines":"87,88"}}],"payload":{"tag":"li","lines":"85,88"}},{"content":"&#x5904;&#x7406;&#x5668;&#x7684;&#x6307;&#x4ee4;&#x96c6;&#x5206;&#x4e3a;","children":[{"content":"&#x590d;&#x6742;&#x6307;&#x4ee4;&#x96c6;(CISC)","children":[],"payload":{"tag":"li","lines":"89,90"}},{"content":"&#x7cbe;&#x7b80;&#x6307;&#x4ee4;&#x96c6;(CISC)","children":[],"payload":{"tag":"li","lines":"90,91"}}],"payload":{"tag":"li","lines":"88,91"}},{"content":"CPU&#x6838;&#x5fc3;&#x90e8;&#x4ef6;&#x7ec4;&#x6210;","children":[{"content":"&#x901a;&#x7528;&#x5bc4;&#x5b58;&#x5668;&#x7ec4;","children":[],"payload":{"tag":"li","lines":"92,93"}},{"content":"&#x8fd0;&#x7b97;&#x5668;","children":[{"content":"ALU &#x903b;&#x8f91;&#x8fd0;&#x7b97;&#x5355;&#x5143;","children":[],"payload":{"tag":"li","lines":"94,95"}}],"payload":{"tag":"li","lines":"93,95"}},{"content":"&#x63a7;&#x5236;&#x5668;","children":[{"content":"&#x7a0b;&#x5e8f;&#x8ba1;&#x6570;&#x5668;","children":[],"payload":{"tag":"li","lines":"96,97"}},{"content":"&#x7a0b;&#x5e8f;&#x72b6;&#x6001;&#x5b57;","children":[],"payload":{"tag":"li","lines":"97,98"}},{"content":"&#x6307;&#x4ee4;&#x5bc4;&#x5b58;&#x5668;","children":[],"payload":{"tag":"li","lines":"98,99"}},{"content":"&#x65f6;&#x5e8f;&#x90e8;&#x4ef6;","children":[],"payload":{"tag":"li","lines":"99,100"}}],"payload":{"tag":"li","lines":"95,100"}},{"content":"&#x73b0;&#x4ee3;&#x8ba1;&#x7b97;&#x673a;&#x8fd8;&#x878d;&#x5408;&#x4e86; &#x9ad8;&#x901f;&#x7f13;&#x5b58;cache&#x3001;&#x6d41;&#x6c34;&#x7ebf;&#x7b49;&#x90e8;&#x4ef6;&#x3002;","children":[],"payload":{"tag":"li","lines":"100,101"}}],"payload":{"tag":"li","lines":"91,101"}}],"payload":{"tag":"li","lines":"84,101"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x5fae;&#x5904;&#x7406;&#x5668;&#x7684;&#x7ed3;&#x6784;&#x548c;&#x7c7b;&#x578b;","children":[{"content":"8&#x4f4d;&#x3001;16&#x4f4d;&#x3001;32&#x4f4d;&#x5904;&#x7406;&#x5668;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[{"content":"&#x5e38;&#x7528;8&#x4f4d;&#x5904;&#x7406;&#x5668;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[{"content":"&#x4f4e;&#x6210;&#x672c;&#x3001;&#x53ef;&#x6269;&#x5145;&#x5185;&#x5b58;&#x53ca;&#x63a5;&#x53e3;&#x8bbe;&#x5907;&#x7b49;&#x3002;","children":[],"payload":{"tag":"li","lines":"104,105"}}],"payload":{"tag":"li","lines":"103,105"}},{"content":"&#x5e38;&#x7528;16&#x4f4d;&#x5904;&#x7406;&#x5668;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[],"payload":{"tag":"li","lines":"105,106"}},{"content":"&#x5e38;&#x7528;32&#x4f4d;&#x5904;&#x7406;&#x5668;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[{"content":"32&#x4f4d;&#x7684;&#x5730;&#x5740;&#x548c;&#x6570;&#x636e;&#x603b;&#x7ebf;&#xff0c;&#x5730;&#x5740;&#x7a7a;&#x95f4;&#x8fbe;&#x5230;&#x4e86;4GB&#x3002;&#x76ee;&#x524d;&#x4e3b;&#x6d41;&#x7684;&#x5fae;&#x5904;&#x7406;&#x5668;&#x6709;ARM&#x3001;MIPS&#x3001;PowerPC&#x7b49;&#x3002;","children":[],"payload":{"tag":"li","lines":"107,108"}}],"payload":{"tag":"li","lines":"106,108"}}],"payload":{"tag":"li","lines":"102,108"}},{"content":"DSP&#x5904;&#x7406;&#x5668;&#x7684;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[{"content":"&#x5185;&#x90e8;&#x91c7;&#x7528;&#x6307;&#x4ee4;&#x548c;&#x6570;&#x636e;&#x5206;&#x5f00;&#x7684;&#x54c8;&#x4f5b;&#x7ed3;&#x6784;","children":[],"payload":{"tag":"li","lines":"109,110"}},{"content":"&#x6709;&#x4e13;&#x95e8;&#x7684;&#x786c;&#x4ef6;&#x4e58;&#x6cd5;&#x5668;","children":[],"payload":{"tag":"li","lines":"110,111"}},{"content":"&#x5e7f;&#x6cdb;&#x4f7f;&#x7528;&#x6d41;&#x6c34;&#x7ebf;","children":[],"payload":{"tag":"li","lines":"111,112"}},{"content":"&#x63d0;&#x4f9b;&#x7279;&#x6b8a;&#x7684;&#x6307;&#x4ee4;&#xff0c;&#x5b9e;&#x73b0;&#x6570;&#x5b57;&#x4fe1;&#x53f7;&#x5904;&#x7406;&#x7b97;&#x6cd5;&#x3002;","children":[],"payload":{"tag":"li","lines":"112,113"}}],"payload":{"tag":"li","lines":"108,113"}},{"content":"&#x591a;&#x6838;&#x5904;&#x7406;&#x5668;&#x7684;&#x4f53;&#x7cfb;&#x7ed3;&#x6784;&#x7279;&#x70b9;","children":[{"content":"&#x53ef;&#x5206;&#x4e3a;&#x540c;&#x6784;&#x591a;&#x6838;&#x548c;&#x5f02;&#x6784;&#x591a;&#x6838;","children":[{"content":"&#x540c;&#x6784;&#x591a;&#x6838;","children":[{"content":"Intel&#x9177;&#x777f;&#x67b6;&#x6784;&#x5904;&#x7406;&#x5668;","children":[],"payload":{"tag":"li","lines":"116,117"}},{"content":"TI keystone&#x67b6;&#x6784;&#x5904;&#x7406;&#x5668;","children":[],"payload":{"tag":"li","lines":"117,118"}}],"payload":{"tag":"li","lines":"115,118"}},{"content":"&#x5f02;&#x6784;&#x591a;&#x6838;","children":[{"content":"AMD &#x6838;&#x663e;","children":[],"payload":{"tag":"li","lines":"119,120"}},{"content":"TI OMAP/Davinci&#x5904;&#x7406;&#x5668;","children":[],"payload":{"tag":"li","lines":"120,121"}},{"content":"Xilinx Zynq&#x5904;&#x7406;&#x5668;","children":[],"payload":{"tag":"li","lines":"121,122"}}],"payload":{"tag":"li","lines":"118,122"}}],"payload":{"tag":"li","lines":"114,122"}}],"payload":{"tag":"li","lines":"113,122"}}],"payload":{"tag":"li","lines":"101,122"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x5fae;&#x5904;&#x7406;&#x5668;&#x7684;&#x5f02;&#x5e38;&#x548c;&#x4e2d;&#x65ad;","children":[{"content":"&#x5f02;&#x5e38;: &#x53ef;&#x5206;&#x4e3a;&#x56db;&#x7c7b; &#x4e2d;&#x65ad;&#x3001;&#x9677;&#x9631;&#x3001;&#x6545;&#x969c;&#x3001;&#x7ec8;&#x6b62;","children":[{"content":"&#x9677;&#x9631;: &#x53ef;&#x7f16;&#x7a0b;&#x7684;&#x5f02;&#x5e38;&#xff0c;&#x5982;&#x7cfb;&#x7edf;&#x8c03;&#x7528;&#x3002;","children":[],"payload":{"tag":"li","lines":"124,125"}},{"content":"&#x6545;&#x969c;: &#x53ef;&#x6062;&#x590d;&#x7684;&#x9519;&#x8bef;&#xff0c;&#x5982;&#x5730;&#x5740;&#x8d8a;&#x754c;&#x3002;","children":[],"payload":{"tag":"li","lines":"125,126"}},{"content":"&#x4e2d;&#x6b62;: &#x4e0d;&#x53ef;&#x6062;&#x590d;&#x7684;&#x81f4;&#x547d;&#x9519;&#x8bef;&#xff0c;&#x5982;&#x786c;&#x4ef6;&#x6545;&#x969c;&#x3002;","children":[],"payload":{"tag":"li","lines":"126,127"}}],"payload":{"tag":"li","lines":"123,127"}},{"content":"&#x4e2d;&#x65ad;: &#x662f;&#x6765;&#x81ea;IO&#x8bbe;&#x5907;&#x7684;&#x4fe1;&#x53f7;","children":[{"content":"&#x786c;&#x4e2d;&#x65ad;&#x548c;&#x8f6f;&#x4e2d;&#x65ad;","children":[{"content":"&#x786c;&#x4e2d;&#x65ad;&#x662f;&#x786c;&#x4ef6;&#x4ea7;&#x751f;&#x7684;&#xff0c;&#x5982;&#x78c1;&#x76d8;&#x3001;&#x7f51;&#x5361;&#x3001;&#x952e;&#x76d8;&#x3001;&#x65f6;&#x949f;&#x7b49;&#x3002;","children":[],"payload":{"tag":"li","lines":"129,130"}}],"payload":{"tag":"li","lines":"128,130"}},{"content":"&#x53ef;&#x5c4f;&#x853d;&#x4e2d;&#x65ad;&#x548c;&#x4e0d;&#x53ef;&#x5c4f;&#x853d;&#x4e2d;&#x65ad;","children":[],"payload":{"tag":"li","lines":"130,131"}},{"content":"&#x4e2d;&#x65ad;&#x4f18;&#x5148;&#x7ea7;","children":[],"payload":{"tag":"li","lines":"131,132"}},{"content":"&#x4e2d;&#x65ad;&#x5d4c;&#x5957;","children":[],"payload":{"tag":"li","lines":"132,135"}}],"payload":{"tag":"li","lines":"127,135"}}],"payload":{"tag":"li","lines":"122,135"}}],"payload":{"tag":"h2","lines":"82,83"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;&#x7684;&#x5b58;&#x50a8;&#x4f53;&#x7cfb;","children":[{"content":"&#x5b58;&#x50a8;&#x7cfb;&#x7edf;&#x7684;&#x5c42;&#x6b21;&#x7ed3;&#x6784;","children":[{"content":"&#x7b2c;&#x4e00;&#x5c42;: CPU&#x5bc4;&#x5b58;&#x5668;","children":[],"payload":{"tag":"li","lines":"138,139"}},{"content":"&#x7b2c;&#x4e8c;&#x5c42;: &#x9ad8;&#x901f;&#x7f13;&#x5b58;cache","children":[],"payload":{"tag":"li","lines":"139,140"}},{"content":"&#x7b2c;&#x4e09;&#x5c42;: &#x4e3b;&#x5b58;","children":[],"payload":{"tag":"li","lines":"140,141"}},{"content":"&#x7b2c;&#x56db;&#x5c42;: &#x78c1;&#x76d8;","children":[],"payload":{"tag":"li","lines":"141,142"}},{"content":"&#x7b2c;&#x4e94;&#x5c42;: &#x78c1;&#x5e26;&#x3001;&#x5149;&#x76d8;","children":[],"payload":{"tag":"li","lines":"142,143"}}],"payload":{"tag":"li","lines":"137,143"}},{"content":"&#x5185;&#x5b58;&#x7ba1;&#x7406;&#x5355;&#x5143;","children":[{"content":"MMU&#x63d0;&#x4f9b;&#x4e86;&#x4fdd;&#x62a4;&#x5185;&#x5b58;&#x7684;&#x786c;&#x4ef6;&#x673a;&#x5236;&#x3002;","children":[],"payload":{"tag":"li","lines":"144,145"}},{"content":"&#x5185;&#x5b58;&#x4fdd;&#x62a4;&#x5305;&#x62ec;&#x4e24;&#x4e2a;&#x65b9;&#x9762;&#x5185;&#x5bb9;","children":[{"content":"1&#x3001;&#x9632;&#x6b62;&#x5730;&#x5740;&#x8d8a;&#x754c;","children":[],"payload":{"tag":"li","lines":"146,147"}},{"content":"2&#x3001;&#x9632;&#x6b62;&#x64cd;&#x4f5c;&#x8d8a;&#x6743;","children":[],"payload":{"tag":"li","lines":"147,148"}}],"payload":{"tag":"li","lines":"145,148"}}],"payload":{"tag":"li","lines":"143,148"}},{"content":"RAM&#x548c;ROM&#x7684;&#x79cd;&#x7c7b;&#x548c;&#x9009;&#x578b;","children":[{"content":"RAM &#x968f;&#x673a;&#x5b58;&#x50a8;&#x5668;: &#x7531;&#x5730;&#x5740;&#x8bd1;&#x7801;&#x5668;&#x3001;&#x5b58;&#x50a8;&#x77e9;&#x9635;&#x548c;&#x8bfb;&#x5199;&#x63a7;&#x5236;&#x7535;&#x8def;&#x7ec4;&#x6210;&#x3002;","children":[{"content":"&#x7279;&#x70b9;","children":[{"content":"&#x968f;&#x673a;&#x8bfb;&#x5199;","children":[],"payload":{"tag":"li","lines":"151,152"}},{"content":"&#x8bfb;&#x5199;&#x901f;&#x5ea6;&#x5feb;","children":[],"payload":{"tag":"li","lines":"152,153"}},{"content":"&#x65ad;&#x7535;&#x540e;&#x6570;&#x636e;&#x4e22;&#x5931;","children":[],"payload":{"tag":"li","lines":"153,154"}}],"payload":{"tag":"li","lines":"150,154"}},{"content":"&#x5206;&#x7c7b; &#x6309;&#x5b58;&#x50a8;&#x5355;&#x5143;&#x7684;&#x5de5;&#x4f5c;&#x539f;&#x7406;","children":[{"content":"<code>SRAM</code> &#x9759;&#x6001;&#x5b58;&#x50a8;&#x5668;","children":[{"content":"&#x5b58;&#x50a8;&#x5355;&#x5143;&#x7ec4;&#x6210;: &#x9759;&#x6001;&#x89e6;&#x53d1;&#x5668;+&#x95e8;&#x63a7;&#x7ba1;","children":[],"payload":{"tag":"li","lines":"156,157"}},{"content":"&#x8bfb;&#x5199;&#x901f;&#x5ea6;&#x5feb;&#xff0c;&#x4f46;&#x662f;&#x5bb9;&#x91cf;&#x8f83;&#x5c0f;&#xff0c;&#x4e3b;&#x8981;&#x662f;&#x6210;&#x672c;&#x9ad8;","children":[],"payload":{"tag":"li","lines":"157,158"}},{"content":"&#x591a;&#x7528;&#x4e8e;&#x9ad8;&#x901f;&#x7f13;&#x5b58;","children":[],"payload":{"tag":"li","lines":"158,159"}}],"payload":{"tag":"li","lines":"155,159"}},{"content":"<code>DRAM</code> &#x52a8;&#x6001;&#x5b58;&#x50a8;&#x5668;","children":[{"content":"&#x5b58;&#x50a8;&#x5355;&#x5143;&#x7ec4;&#x6210;: &#x7535;&#x5bb9;+&#x8bbf;&#x95ee;&#x6676;&#x4f53;&#x7ba1;","children":[],"payload":{"tag":"li","lines":"160,161"}},{"content":"&#x5f02;&#x6b65;&#x5de5;&#x4f5c;","children":[],"payload":{"tag":"li","lines":"161,162"}},{"content":"&#x591a;&#x7528;&#x4e8e;&#x4e3b;&#x5b58;, &#x73b0;&#x5df2;&#x88ab;<code>DDR SDRAM&#x53d6;&#x4ee3;</code>","children":[],"payload":{"tag":"li","lines":"162,163"}}],"payload":{"tag":"li","lines":"159,163"}},{"content":"<code>DDR SDRAM</code> &#x53cc;&#x500d;&#x901f;&#x7387;&#x540c;&#x6b65;&#x52a8;&#x6001;&#x968f;&#x673a;&#x5b58;&#x50a8;&#x5668;","children":[{"content":"&#x540c;&#x6b65;&#x5de5;&#x4f5c;&#x5373;&#x8bfb;&#x5199;&#x548c;&#x65f6;&#x949f;&#x540c;&#x6b65;","children":[],"payload":{"tag":"li","lines":"164,165"}},{"content":"&#x591a;&#x7528;&#x4e8e;&#x4e3b;&#x5b58;","children":[],"payload":{"tag":"li","lines":"165,166"}}],"payload":{"tag":"li","lines":"163,166"}}],"payload":{"tag":"li","lines":"154,166"}}],"payload":{"tag":"li","lines":"149,166"}},{"content":"ROM &#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;","children":[{"content":"&#x7279;&#x70b9;","children":[{"content":"&#x5b58;&#x50a8;&#x4fe1;&#x606f;&#x975e;&#x6613;&#x5931;&#x6027;","children":[],"payload":{"tag":"li","lines":"168,169"}}],"payload":{"tag":"li","lines":"167,169"}},{"content":"&#x5206;&#x7c7b;","children":[{"content":"<code>PROM</code> &#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;","children":[],"payload":{"tag":"li","lines":"170,171"}},{"content":"<code>EPROM</code> &#x53ef;&#x64e6;&#x9664;&#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;","children":[],"payload":{"tag":"li","lines":"171,172"}},{"content":"<code>EEPROM</code> &#x7535;&#x53ef;&#x64e6;&#x53ef;&#x7f16;&#x7a0b;&#x53ea;&#x8bfb;&#x5b58;&#x50a8;&#x5668;","children":[],"payload":{"tag":"li","lines":"172,173"}},{"content":"<code>Flash</code> &#x95ea;&#x5b58;","children":[{"content":"&#x7279;&#x70b9;","children":[{"content":"&#x975e;&#x6613;&#x5931;&#x6027;","children":[],"payload":{"tag":"li","lines":"175,176"}},{"content":"&#x53ef;&#x64e6;&#x9664;&#x53ef;&#x7f16;&#x7a0b;","children":[],"payload":{"tag":"li","lines":"176,177"}},{"content":"&#x9ad8;&#x5bc6;&#x5ea6;","children":[],"payload":{"tag":"li","lines":"177,178"}},{"content":"&#x4f4e;&#x529f;&#x8017;","children":[],"payload":{"tag":"li","lines":"178,179"}}],"payload":{"tag":"li","lines":"174,179"}},{"content":"&#x5206;&#x7c7b;","children":[{"content":"NOR Flash","children":[],"payload":{"tag":"li","lines":"180,181"}},{"content":"NAND Flash","children":[],"payload":{"tag":"li","lines":"181,182"}}],"payload":{"tag":"li","lines":"179,182"}},{"content":"&#x5e38;&#x7528;&#x578b;&#x53f7;","children":[{"content":"<code>SPI Flash</code>","children":[],"payload":{"tag":"li","lines":"183,184"}},{"content":"<code>eMMC</code>","children":[],"payload":{"tag":"li","lines":"184,185"}},{"content":"<code>SD&#x5361;</code>","children":[],"payload":{"tag":"li","lines":"185,186"}}],"payload":{"tag":"li","lines":"182,186"}}],"payload":{"tag":"li","lines":"173,186"}}],"payload":{"tag":"li","lines":"169,186"}}],"payload":{"tag":"li","lines":"166,186"}}],"payload":{"tag":"li","lines":"148,186"}},{"content":"&#x9ad8;&#x901f;&#x7f13;&#x5b58;","children":[{"content":"&#x539f;&#x7406;: &#x7a0b;&#x5e8f;&#x5bf9;&#x5185;&#x5b58;&#x7684;&#x8bbf;&#x95ee;&#x7b26;&#x5408;<code>&#x5c40;&#x90e8;&#x6027;&#x539f;&#x7406;</code>","children":[],"payload":{"tag":"li","lines":"187,188"}},{"content":"&#x6839;&#x636e;&#x5de5;&#x4f5c;&#x673a;&#x5236;&#xff0c;&#x53ef;&#x5206;&#x4e3a;","children":[{"content":"&#x56de;&#x5199;&#x5f0f;Cache","children":[{"content":"&#x4e0d;&#x53ca;&#x65f6;&#x628a;&#x6570;&#x636e;&#x5199;&#x5165;&#x5230;&#x4e3b;&#x5b58;&#x4e2d;&#xff0c;&#x800c;&#x662f;&#x7b49;cache&#x5185;&#x5bb9;&#x8981;&#x88ab;&#x6362;&#x4e0b;&#x6765;&#x7684;&#x65f6;&#x5019;&#x624d;&#x5199;&#x5165;&#x5230;&#x4e3b;&#x5b58;&#x4e2d;&#x3002;","children":[],"payload":{"tag":"li","lines":"190,191"}},{"content":"&#x4e0d;&#x4fdd;&#x8bc1;cache&#x548c;&#x5185;&#x5b58;&#x7684;&#x6570;&#x636e;&#x4e00;&#x81f4;&#x6027;","children":[],"payload":{"tag":"li","lines":"191,192"}}],"payload":{"tag":"li","lines":"189,192"}},{"content":"&#x5199;&#x901a;&#x5f0f;Cache","children":[{"content":"&#x5f53;CPU&#x6267;&#x884c;&#x5199;&#x64cd;&#x4f5c;&#x65f6;&#xff0c;&#x5199;&#x5165;&#x5230;cache&#xff0c;&#x540c;&#x65f6;&#x4e5f;&#x5199;&#x5165;&#x5230;&#x4e3b;&#x5b58;&#x3002;","children":[],"payload":{"tag":"li","lines":"193,194"}}],"payload":{"tag":"li","lines":"192,194"}}],"payload":{"tag":"li","lines":"188,194"}}],"payload":{"tag":"li","lines":"186,194"}},{"content":"&#x5176;&#x4ed6;&#x5b58;&#x50a8;&#x8bbe;&#x5907;","children":[{"content":"&#x5feb;&#x95ea;&#x5b58;&#x50a8;&#x5668; Flash","children":[{"content":"&#x662f;EEPROM&#x7684;&#x53d8;&#x79cd;&#xff0c;&#x533a;&#x522b;&#x662f;EEPROM&#x53ef;&#x4ee5;&#x5b57;&#x8282;&#x8bfb;&#x5199;&#xff0c;&#x800c;Flash&#x53ea;&#x80fd;&#x6309;&#x5757;&#x8bfb;&#x5199;","children":[],"payload":{"tag":"li","lines":"196,197"}},{"content":"&#x7279;&#x70b9;","children":[{"content":"&#x975e;&#x6613;&#x5931;&#x6027;","children":[],"payload":{"tag":"li","lines":"198,199"}},{"content":"&#x53ef;&#x64e6;&#x9664;&#x53ef;&#x7f16;&#x7a0b;","children":[],"payload":{"tag":"li","lines":"199,200"}},{"content":"&#x9ad8;&#x5bc6;&#x5ea6;","children":[],"payload":{"tag":"li","lines":"200,201"}},{"content":"&#x4f4e;&#x529f;&#x8017;","children":[],"payload":{"tag":"li","lines":"201,202"}}],"payload":{"tag":"li","lines":"197,202"}},{"content":"&#x5206;&#x7c7b;","children":[{"content":"NOR Flash","children":[{"content":"NOR Flash&#x6709;SRAM&#x63a5;&#x53e3;&#xff0c;&#x80fd;&#x5e76;&#x5165;&#x5230;&#x5b58;&#x50a8;&#x603b;&#x7ebf;&#x3002;","children":[],"payload":{"tag":"li","lines":"204,205"}},{"content":"NOR Flash&#x5728;&#x64e6;&#x9664;&#x4e4b;&#x524d;&#x8981;&#x5148;&#x5c06;&#x8bbe;&#x5907;&#x90fd;&#x5199;0&#xff0c;&#x4e5f;&#x5c31;&#x662f;NOR Flash&#x6ca1;&#x6709;&#x5199;1&#x7684;&#x529f;&#x80fd;&#x3002;","children":[],"payload":{"tag":"li","lines":"205,206"}}],"payload":{"tag":"li","lines":"203,206"}},{"content":"NAND Flash","children":[{"content":"&#x4f7f;&#x7528;&#x590d;&#x6742;&#x7684;IO&#x53e3;&#x6765;&#x8fdb;&#x884c;&#x8bfb;&#x5199;&#xff0c;&#x4e0d;&#x80fd;&#x76f4;&#x63a5;&#x6784;&#x6210;&#x5185;&#x5b58;&#x3002;","children":[],"payload":{"tag":"li","lines":"207,208"}}],"payload":{"tag":"li","lines":"206,208"}},{"content":"&#x4e24;&#x8005;&#x5bf9;&#x6bd4;","children":[{"content":"NOR&#x7684;&#x8bfb;&#x901f;&#x5ea6;&#x6bd4;NAND&#x7a0d;&#x5feb;&#x4e00;&#x4e9b;&#x3002;","children":[],"payload":{"tag":"li","lines":"209,210"}},{"content":"NAND&#x7684;&#x5199;&#x5165;&#x901f;&#x5ea6;&#x6bd4;NOR&#x5feb;&#x5f88;&#x591a;&#x3002;","children":[],"payload":{"tag":"li","lines":"210,211"}},{"content":"NAND&#x7684;&#x64e6;&#x9664;&#x901f;&#x5ea6;&#x8fdc;&#x6bd4;NOR&#x7684;&#x5feb;&#x3002;","children":[],"payload":{"tag":"li","lines":"211,212"}},{"content":"&#x5927;&#x591a;&#x6570;&#x5199;&#x5165;&#x64cd;&#x4f5c;&#x9700;&#x8981;&#x5148;&#x8fdb;&#x884c;&#x64e6;&#x9664;&#x64cd;&#x4f5c;&#x3002;","children":[],"payload":{"tag":"li","lines":"212,213"}},{"content":"NAND&#x7684;&#x64e6;&#x9664;&#x5355;&#x5143;&#x66f4;&#x5c0f;&#xff0c;&#x76f8;&#x5e94;&#x7684;&#x64e6;&#x9664;&#x7535;&#x8def;&#x66f4;&#x5c11;&#x3002;","children":[],"payload":{"tag":"li","lines":"213,214"}},{"content":"NOR FLASH&#x4e0a;&#x9762;&#x53ef;&#x76f4;&#x63a5;&#x8fd0;&#x884c;&#x7a0b;&#x5e8f;&#xff0c;NAND FLASH&#x4e0a;&#x4ec5;&#x53ef;&#x4ee5;&#x5b58;&#x50a8;&#x4fe1;&#x606f;&#x3002;","children":[],"payload":{"tag":"li","lines":"214,215"}}],"payload":{"tag":"li","lines":"208,215"}}],"payload":{"tag":"li","lines":"202,215"}}],"payload":{"tag":"li","lines":"195,215"}},{"content":"&#x78c1;&#x76d8;&#x3001;&#x5149;&#x76d8;&#x7b49;&#x5b58;&#x50a8;&#x4ecb;&#x8d28;","children":[{"content":"&#x78c1;&#x76d8;","children":[],"payload":{"tag":"li","lines":"216,217"}},{"content":"&#x5149;&#x76d8;","children":[],"payload":{"tag":"li","lines":"217,218"}},{"content":"CF","children":[],"payload":{"tag":"li","lines":"218,219"}},{"content":"SD","children":[],"payload":{"tag":"li","lines":"219,224"}}],"payload":{"tag":"li","lines":"215,224"}}],"payload":{"tag":"li","lines":"194,224"}}],"payload":{"tag":"h2","lines":"135,136"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;I/O","children":[{"content":"&#x901a;&#x7528;&#x8f93;&#x5165;/&#x8f93;&#x51fa;&#x63a5;&#x53e3;","children":[{"content":"&#x6570;&#x636e;&#x5bc4;&#x5b58;&#x5668;&#x548c;&#x6570;&#x636e;&#x65b9;&#x5411;&#x5bc4;&#x5b58;&#x5668;","children":[],"payload":{"tag":"li","lines":"227,228"}}],"payload":{"tag":"li","lines":"226,228"}},{"content":"&#x6a21;&#x6570;/&#x6570;&#x6a21;&#x8f6c;&#x6362;&#x63a5;&#x53e3;","children":[{"content":"&#x6a21;&#x6570;&#x8f6c;&#x6362;&#x63a5;&#x53e3; ADC","children":[{"content":"&#x5e38;&#x7528;&#x65b9;&#x6cd5;","children":[{"content":"&#x8ba1;&#x6570;&#x6cd5;","children":[],"payload":{"tag":"li","lines":"231,232"}},{"content":"&#x53cc;&#x79ef;&#x5206;&#x6cd5;","children":[],"payload":{"tag":"li","lines":"232,233"}},{"content":"&#x9010;&#x6b21;&#x903c;&#x8fd1;&#x6cd5;(&#x666e;&#x904d;&#x65b9;&#x6cd5;)","children":[{"content":"&#x901f;&#x5ea6;&#x5feb;&#xff0c;&#x8f6c;&#x6362;&#x7cbe;&#x5ea6;&#x9ad8;","children":[],"payload":{"tag":"li","lines":"234,235"}}],"payload":{"tag":"li","lines":"233,235"}}],"payload":{"tag":"li","lines":"230,235"}}],"payload":{"tag":"li","lines":"229,235"}},{"content":"&#x6570;&#x6a21;&#x8f6c;&#x6362;&#x63a5;&#x53e3; DAC","children":[{"content":"&#x4e24;&#x4e2a;&#x73af;&#x8282;","children":[{"content":"&#x7531;DA&#x8f6c;&#x6362;&#x5668;&#x628a;&#x6570;&#x5b57;&#x91cf;&#x8f6c;&#x6362;&#x4e3a;&#x6a21;&#x62df;&#x7535;&#x6d41;","children":[],"payload":{"tag":"li","lines":"237,238"}},{"content":"&#x7531;&#x8fd0;&#x7b97;&#x653e;&#x5927;&#x5668;&#x628a;&#x6a21;&#x62df;&#x7535;&#x6d41;&#x8f6c;&#x6362;&#x4e3a;&#x6a21;&#x62df;&#x7535;&#x538b;","children":[],"payload":{"tag":"li","lines":"238,239"}}],"payload":{"tag":"li","lines":"236,239"}}],"payload":{"tag":"li","lines":"235,239"}}],"payload":{"tag":"li","lines":"228,239"}},{"content":"&#x952e;&#x76d8;&#x3001;&#x663e;&#x793a;&#x3001;&#x89e6;&#x6478;&#x5c4f;&#x7b49;&#x63a5;&#x53e3;&#x57fa;&#x672c;&#x539f;&#x7406;&#x4e0e;&#x7ed3;&#x6784;","children":[{"content":"&#x952e;&#x76d8;","children":[{"content":"&#x4e24;&#x79cd;&#x5f62;&#x5f0f;","children":[{"content":"&#x7ebf;&#x6027;&#x952e;&#x76d8;","children":[{"content":"&#x5360;&#x7528;IO&#x53e3;&#x591a;&#xff0c;&#x53ea;&#x9002;&#x7528;&#x4e8e;&#x6309;&#x952e;&#x5c11;&#x7684;&#x573a;&#x666f;","children":[],"payload":{"tag":"li","lines":"243,244"}}],"payload":{"tag":"li","lines":"242,244"}},{"content":"&#x77e9;&#x9635;&#x952e;&#x76d8;","children":[{"content":"&#x53c8;&#x5206;&#x4e3a; &#x7f16;&#x7801;&#x952e;&#x76d8; &#x548c; &#x975e;&#x7f16;&#x7801;&#x952e;&#x76d8;","children":[],"payload":{"tag":"li","lines":"245,246"}},{"content":"&#x7f16;&#x7801;&#x952e;&#x76d8;","children":[{"content":"&#x626b;&#x63cf;&#x65b9;&#x6cd5;&#xff1a;&#x884c;&#x626b;&#x63cf;&#x6cd5;&#x3001;&#x5217;&#x626b;&#x63cf;&#x6cd5;&#x3001;&#x53cd;&#x8f6c;&#x6cd5;","children":[],"payload":{"tag":"li","lines":"247,248"}}],"payload":{"tag":"li","lines":"246,248"}},{"content":"&#x975e;&#x7f16;&#x7801;&#x952e;&#x76d8;","children":[{"content":"&#x7528;&#x63a5;&#x53e3;&#x82af;&#x7247;&#x6765;&#x5b9e;&#x73b0;","children":[],"payload":{"tag":"li","lines":"249,250"}}],"payload":{"tag":"li","lines":"248,250"}}],"payload":{"tag":"li","lines":"244,250"}}],"payload":{"tag":"li","lines":"241,250"}}],"payload":{"tag":"li","lines":"240,250"}},{"content":"&#x663e;&#x793a;","children":[{"content":"LCD","children":[],"payload":{"tag":"li","lines":"251,252"}}],"payload":{"tag":"li","lines":"250,252"}},{"content":"&#x89e6;&#x6478;&#x5c4f;","children":[{"content":"&#x5206;&#x4e3a;&#x8868;&#x9762;&#x58f0;&#x6ce2;&#x5c4f;&#x3001;&#x7535;&#x963b;&#x5c4f;&#x3001;&#x7535;&#x5bb9;&#x5c4f;&#xff0c;&#x7ea2;&#x5916;&#x5c4f;","children":[],"payload":{"tag":"li","lines":"253,254"}}],"payload":{"tag":"li","lines":"252,254"}}],"payload":{"tag":"li","lines":"239,254"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;&#x97f3;&#x9891;&#x3001;&#x89c6;&#x9891;&#x63a5;&#x53e3;","children":[{"content":"&#x97f3;&#x9891;&#x63a5;&#x53e3;","children":[{"content":"&#x97f3;&#x9891;&#x6570;&#x636e;&#x7c7b;&#x578b;","children":[{"content":"PCM","children":[],"payload":{"tag":"li","lines":"257,258"}},{"content":"MP3","children":[],"payload":{"tag":"li","lines":"258,259"}},{"content":"AC3","children":[],"payload":{"tag":"li","lines":"259,260"}}],"payload":{"tag":"li","lines":"256,260"}},{"content":"IIS&#x97f3;&#x9891;&#x63a5;&#x53e3;&#x603b;&#x7ebf;","children":[{"content":"&#x4e09;&#x6839;&#x7ebf;: &#x6570;&#x636e;&#x7ebf;&#x3001;&#x5b57;&#x6bb5;&#x9009;&#x62e9;&#x7ebf;&#x3001;&#x65f6;&#x949f;&#x7ebf;","children":[],"payload":{"tag":"li","lines":"261,262"}}],"payload":{"tag":"li","lines":"260,262"}}],"payload":{"tag":"li","lines":"255,262"}},{"content":"&#x89c6;&#x9891;&#x63a5;&#x53e3;","children":[{"content":"VGA&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"263,264"}},{"content":"CVBS&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"264,265"}},{"content":"S-Video&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"265,266"}},{"content":"&#x5206;&#x91cf;&#x89c6;&#x9891;&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"266,267"}},{"content":"DVI&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"267,268"}},{"content":"HDMI&#x63a5;&#x53e3;","children":[{"content":"&#x57fa;&#x4e8e;DVI&#xff0c;&#x5728;&#x6b64;&#x57fa;&#x7840;&#x4e0a;&#x52a0;&#x4e86;&#x97f3;&#x9891;&#x4fe1;&#x53f7;&#x63a5;&#x53e3;","children":[],"payload":{"tag":"li","lines":"269,270"}}],"payload":{"tag":"li","lines":"268,270"}}],"payload":{"tag":"li","lines":"262,270"}}],"payload":{"tag":"li","lines":"254,270"}},{"content":"&#x8f93;&#x5165;/&#x8f93;&#x51fa;&#x63a7;&#x5236;","children":[],"payload":{"tag":"li","lines":"270,273"}}],"payload":{"tag":"h2","lines":"224,225"}},{"content":"&#x5b9a;&#x65f6;&#x5668;&#x548c;&#x8ba1;&#x6570;&#x5668;","children":[{"content":"&#x786c;&#x4ef6;&#x5b9a;&#x65f6;&#x5668;","children":[{"content":"&#x64cd;&#x4f5c;&#x7cfb;&#x7edf;&#x5185;&#x90e8;&#x7684;&#x5b9a;&#x65f6;&#x5668;","children":[],"payload":{"tag":"li","lines":"276,277"}}],"payload":{"tag":"li","lines":"275,277"}},{"content":"&#x8f6f;&#x4ef6;&#x5b9a;&#x65f6;&#x5668;","children":[{"content":"&#x7528;&#x6237;&#x4f7f;&#x7528;&#x7684;&#x8f6f;&#x4ef6;&#x5b9a;&#x65f6;","children":[],"payload":{"tag":"li","lines":"278,279"}}],"payload":{"tag":"li","lines":"277,279"}},{"content":"&#x53ef;&#x7f16;&#x7a0b;&#x95f4;&#x9694;&#x5b9a;&#x65f6;&#x5668;","children":[],"payload":{"tag":"li","lines":"279,282"}}],"payload":{"tag":"h2","lines":"273,274"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;&#x7cfb;&#x7edf;&#x603b;&#x7ebf;&#x53ca;&#x901a;&#x4fe1;&#x63a5;&#x53e3;","children":[{"content":"PCI&#x3001;PCI-E&#x7b49;&#x63a5;&#x53e3;&#x57fa;&#x672c;&#x539f;&#x7406;&#x4e0e;&#x7ed3;&#x6784;","children":[{"content":"PCI","children":[{"content":"&#x9ad8;&#x901f;&#x6027;","children":[],"payload":{"tag":"li","lines":"286,287"}},{"content":"&#x5373;&#x63d2;&#x5373;&#x7528;&#x6027;","children":[],"payload":{"tag":"li","lines":"287,288"}},{"content":"&#x53ef;&#x9760;&#x6027;","children":[],"payload":{"tag":"li","lines":"288,289"}},{"content":"&#x590d;&#x6742;&#x6027;","children":[],"payload":{"tag":"li","lines":"289,290"}},{"content":"&#x81ea;&#x52a8;&#x914d;&#x7f6e;","children":[],"payload":{"tag":"li","lines":"290,291"}},{"content":"&#x5171;&#x4eab;&#x4e2d;&#x65ad;","children":[],"payload":{"tag":"li","lines":"291,292"}},{"content":"&#x6269;&#x5c55;&#x6027;&#x597d;","children":[],"payload":{"tag":"li","lines":"292,293"}},{"content":"&#x591a;&#x8def;&#x590d;&#x7528;","children":[],"payload":{"tag":"li","lines":"293,294"}},{"content":"&#x4e25;&#x683c;&#x89c4;&#x8303;","children":[],"payload":{"tag":"li","lines":"294,295"}}],"payload":{"tag":"li","lines":"285,295"}},{"content":"PCI-E","children":[],"payload":{"tag":"li","lines":"295,296"}},{"content":"EISA","children":[],"payload":{"tag":"li","lines":"296,297"}},{"content":"VME","children":[],"payload":{"tag":"li","lines":"297,298"}},{"content":"CPCI","children":[],"payload":{"tag":"li","lines":"298,299"}},{"content":"PCMCIA","children":[],"payload":{"tag":"li","lines":"299,300"}}],"payload":{"tag":"li","lines":"284,300"}},{"content":"USB&#x3001;&#x4e32;&#x53e3;&#x7b49;&#x57fa;&#x672c;&#x539f;&#x7406;&#x4e0e;&#x7ed3;&#x6784;","children":[{"content":"USB","children":[],"payload":{"tag":"li","lines":"301,302"}},{"content":"&#x4e32;&#x53e3;","children":[{"content":"RS-232C&#x4e32;&#x53e3;","children":[],"payload":{"tag":"li","lines":"303,304"}},{"content":"RS-485&#x4e32;&#x53e3;","children":[],"payload":{"tag":"li","lines":"304,305"}}],"payload":{"tag":"li","lines":"302,305"}},{"content":"&#x7ea2;&#x5916;","children":[],"payload":{"tag":"li","lines":"305,306"}},{"content":"&#x5e76;&#x53e3;","children":[{"content":"IEEE 488","children":[],"payload":{"tag":"li","lines":"307,308"}},{"content":"SCSI","children":[],"payload":{"tag":"li","lines":"308,309"}},{"content":"MXI","children":[],"payload":{"tag":"li","lines":"309,310"}}],"payload":{"tag":"li","lines":"306,310"}},{"content":"SPI","children":[{"content":"SPI&#x6982;&#x8ff0;","children":[],"payload":{"tag":"li","lines":"311,312"}},{"content":"SPI&#x63a5;&#x53e3;&#x7279;&#x70b9;","children":[{"content":"MOSI","children":[],"payload":{"tag":"li","lines":"313,314"}},{"content":"MISO","children":[],"payload":{"tag":"li","lines":"314,315"}},{"content":"SCK","children":[],"payload":{"tag":"li","lines":"315,316"}},{"content":"CS","children":[],"payload":{"tag":"li","lines":"316,317"}}],"payload":{"tag":"li","lines":"312,317"}}],"payload":{"tag":"li","lines":"310,317"}},{"content":"IIC","children":[{"content":"IIC&#x7279;&#x70b9;","children":[{"content":"&#x4e24;&#x6839;&#x4fe1;&#x53f7;&#x7ebf; SDA&#x548c;SCL","children":[],"payload":{"tag":"li","lines":"319,320"}},{"content":"&#x9700;&#x8981;&#x5730;&#x5740;","children":[],"payload":{"tag":"li","lines":"320,321"}},{"content":"&#x4e3b;&#x4ece;&#x53cc;&#x5411;&#x901a;&#x4fe1;","children":[],"payload":{"tag":"li","lines":"321,322"}}],"payload":{"tag":"li","lines":"318,322"}}],"payload":{"tag":"li","lines":"317,322"}},{"content":"IEEE 1394","children":[],"payload":{"tag":"li","lines":"322,323"}},{"content":"CAN","children":[],"payload":{"tag":"li","lines":"323,324"}}],"payload":{"tag":"li","lines":"300,324"}},{"content":"&#x4ee5;&#x592a;&#x7f51;&#x3001;WLAN&#x7b49;&#x57fa;&#x672c;&#x539f;&#x7406;&#x4e0e;&#x7ed3;&#x6784;","children":[{"content":"&#x4ee5;&#x592a;&#x7f51;","children":[],"payload":{"tag":"li","lines":"325,326"}},{"content":"WLAN","children":[],"payload":{"tag":"li","lines":"326,327"}},{"content":"&#x84dd;&#x7259;","children":[],"payload":{"tag":"li","lines":"327,328"}},{"content":"ZigBee","children":[],"payload":{"tag":"li","lines":"328,329"}},{"content":"WIFI","children":[],"payload":{"tag":"li","lines":"329,330"}},{"content":"GPRS","children":[],"payload":{"tag":"li","lines":"330,331"}},{"content":"3G","children":[],"payload":{"tag":"li","lines":"331,332"}},{"content":"AFDX","children":[],"payload":{"tag":"li","lines":"332,333"}},{"content":"FC","children":[],"payload":{"tag":"li","lines":"333,334"}}],"payload":{"tag":"li","lines":"324,334"}},{"content":"Rapid IO&#x7b49;&#x57fa;&#x672c;&#x539f;&#x7406;&#x4e0e;&#x7ed3;&#x6784;","children":[],"payload":{"tag":"li","lines":"334,336"}}],"payload":{"tag":"h2","lines":"282,283"}},{"content":"&#x5d4c;&#x5165;&#x5f0f;SoC","children":[{"content":"Virtex&#x7cfb;&#x5217;","children":[],"payload":{"tag":"li","lines":"338,339"}},{"content":"Spartan&#x7cfb;&#x5217;","children":[],"payload":{"tag":"li","lines":"339,340"}}],"payload":{"tag":"h2","lines":"336,337"}}],"payload":{"tag":"h1","lines":"1,2"}}</script>
+      <script type="application/json">{}</script>
+    </div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10/dist/style.css"><script src="https://fastly.jsdelivr.net/npm/d3@7"></script><script src="https://fastly.jsdelivr.net/npm/markmap-view@0.18.10"></script><script src="https://fastly.jsdelivr.net/npm/markmap-toolbar@0.18.10"></script><style></style>
+<link rel="stylesheet" href="/css/markmap.css">
+
+<script src="/js/markmap.js"></script>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>StarAire
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://staraire.github.io/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC2%E7%AB%A0/" title="思维导图-第2章 嵌入式系统硬件基础知识">http://staraire.github.io/pages/嵌入式/软考/思维导图/第2章/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/" rel="tag"># 思维导图</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC1%E7%AB%A0/" rel="prev" title="思维导图-第1章 计算机系统基础知识">
+                  <i class="fa fa-angle-left"></i> 思维导图-第1章 计算机系统基础知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/pages/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E8%BD%AF%E8%80%83/%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE/%E7%AC%AC3%E7%AB%A0/" rel="next" title="思维导图-第3章 嵌入式硬件设计">
+                  思维导图-第3章 嵌入式硬件设计 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">StarAire</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
