@@ -1,10 +1,59 @@
 ## themes
 
-- `maupassant`
-  - https://github.com/tufu9441/maupassant-hexo
-  - https://www.haomwei.com/technology/maupassant-hexo.html
+## hexo入门
+
+用hexo创建博客
+
+```bash
+hexo init myblog
+cd myblog
+npm install
+```
+
+可以看到工程目录下
+
+- **.github** github相关
+  - `dependabot.yml` 定期扫描项目的依赖文件
+- **node_modules** 依赖包(npm自动生成)
+- **scaffolds** 模板
+  - `post.md` 文章模板
+  - `page.md` 页面模板
+  - `draft.md` 草稿模板
+- **source** 源文件
+  - `_posts` 文章存放文件夹
+    - `hello-world.md` 默认文章
+- **themes** 主题
+  - `.gitkeep` git上传占位用
+- `_config.landscape.yml` 默认主题配置
+- `_config.yml` 博客配置
+- `.gitignore` git忽略文件
+- `package-lock.json` 依赖包版本 由nmp自动生成 会锁定版本细节
+  - 最好不要删除 删之前做好备份
+- `package.json` 依赖包 指定插件及版本
+
+### 默认主题
+
+hexo初始化后默认主题是`landscape`, 根目录下的`_config.yml`配置是这样，还有`_config.landscape.yml`也是这个主题的配置(如不用这个主题可删掉)
+
+### 初始插件
+
+可以看到package.json中的初始插件
+```
+    "hexo": "^7.3.0",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-index": "^4.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.0",
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-server": "^3.0.0",
+    "hexo-theme-landscape": "^1.0.0"
+```
 
 ## 本地部署
+
+### 准备环境
 
 1、安装nodejs：版本18
 
@@ -12,28 +61,72 @@ https://zhuanlan.zhihu.com/p/105715224
 
 2、安装hexo：
 
-```
+```bash
 npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```
 
-```
+```bash
 npm install hexo-cli -g
 ```
 
-3、安装主题和依赖
+### 从零搭建
 
-- 第一次部署要执行
+> 若没有工程文件，只有一些关键的文件，从零恢复工程
+
+- 初始化工程
+
+```bash
+hexo init myblog
+cd myblog
+```
+
+- 拷贝关键文件和删除不需要的文件
+  - 拷贝替换博客配置文件`_config.yml`到`myblog`目录下
+  - 拷贝替换依赖包`package.json`到`myblog`目录下
+  - 拷贝替换`scaffolds` 模板文件到`myblog`目录下
+  - 拷贝替换`source` 博客文件夹到`myblog`目录下
+  - 拷贝`reamde.md`到`myblog`目录下
+  - 删除`_config.landscape.yml`
+  - 删除`package-lock.json`
+  - 删除`themes/.gitkeep`
+
+- 下载主题文件
+  - next主题：`git clone https://github.com/next-theme/hexo-theme-next.git themes/next`
+  - maupassant主题: `git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant`
+
+- 执行 `npm install`
+
+
+- hexo三连
 
 ```
-$ git clone https://github.com/tufu9441/maupassant-hexo.git themes/maupassant
-$ npm install hexo-renderer-pug --save
-$ npm install hexo-renderer-sass-next --save
+hexo clean
+hexo g & hexo s
 ```
 
+
+
+
+### 快速部署
+
+> 有完整的工程，可以快速部署
+
+- 安装依赖
+
+执行 `npm install`
+若报错，删掉`package-lock.json`
+重新执行 `npm install`
+
+- hexo三连
+
 ```
-npm uninstall hexo-renderer-sass
-npm i --save hexo-renderer-sass-next
+hexo clean
+hexo g & hexo s
 ```
+
+
+
+### 一些报错问题
 
 - 换设备
 
@@ -42,9 +135,7 @@ npm i --save hexo-renderer-sass-next
     "hexo-renderer-pug": "^3.0.0",
     "hexo-renderer-sass-next": "^0.1.3",
 ```
-这两个先删除
-然后执行 `npm install`
-若报错，删掉`package-lock.json`
+
 再执行
 ```
 $ npm install hexo-renderer-pug --save
@@ -52,30 +143,14 @@ $ npm install hexo-renderer-sass-next --save
 ```
 
 
-4、hexo三连
-
-```
-hexo clean
-hexo g & hexo s
-```
-
-```
-hexo g & hexo s
-```
-
-5、其他依赖，选择执行
-
-- 搜本站博文
-  - `self_search:true 另外两个搜索(谷歌 百度)关掉`
-  - `npm install hexo-generator-search --save`
-
-
-
 ## 主题安装
 
 - 安装主题
-  - next主题
+  - `next` 主题
     - `git clone https://github.com/next-theme/hexo-theme-next themes/next`
+  - `maupassant` 主题
+    - https://github.com/tufu9441/maupassant-hexo
+    - https://www.haomwei.com/technology/maupassant-hexo.html
 
 - 切换主题
   - 在根目录下的`_config.yml`里改写`theme: hexo`
