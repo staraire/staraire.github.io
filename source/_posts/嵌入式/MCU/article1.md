@@ -12,7 +12,7 @@ tags:
 
 > 看完这个教程之后[金融类安全传输平台项目（C/C++阶段五）](https://www.bilibili.com/video/BV1fg411j7SF/)，看见评论区有个兄弟分享了源码，https://github.com/Peachol/Secure_data_transmission
 于是我就clone下来尝试跑一下，结果发现事情并没有那么简单，花了一下午才把项目跑起来，然后目前还有报错，但是已经能让客户端和服务端通信了，故记录一下环境搭建的过程。
-<!--more-->
+
 ## Clone源码和补充Makefile脚本
 
 上面clone下来的源码，有两个文件夹，`server`和`client`，其中`client`写了Makefile，server里面没写，那我们就补充一个Makefile，把client的复制下来稍微改一改

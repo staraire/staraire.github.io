@@ -1,4 +1,4 @@
-## themes
+# HexoBlog
 
 ## hexo入门
 
@@ -230,6 +230,7 @@ $ npm install hexo-renderer-sass-next --save
 | `hexo-generator-search` | `^2.4.3` | 生成**静态搜索索引**（供前端搜索功能使用） |
 | `hexo-generator-searchdb` | `^1.4.1` | 将搜索数据存入数据库（与搜索插件配套使用） |
 | `hexo-wordcount` | `^6.0.1` | **统计文章字数/阅读时长**（用于主题显示） |
+| `hexo-excerpt`|`^1.3.1`|文章摘录缩起|
 
 
 ### **五、主题相关**

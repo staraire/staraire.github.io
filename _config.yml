@@ -109,5 +109,11 @@ deploy:
 # Dependencies: https://github.com/xu-song/hexo-auto-category
 # depth: the depth of directory-tree you want to generate, should > 0
 auto_category:
- enable: true
- depth: 2
+  enable: true
+  depth: 2
+
+excerpt:
+  depth: 3                # 摘录的深度，即生成的摘录内容所包含的层级标题数量
+  excerpt_excludes: []    # 不生成摘录的页面列表
+  more_excludes: []       # 不使用<!-- more -->标签的页面列表
+  hideWholePostExcerpts: true # 是否隐藏全文摘录（当文章较短时，可能不需要摘录）
