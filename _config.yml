@@ -41,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # Enable this option to copy image/files from post folder to public folder
 relative_link: false
 future: true
 highlight:  
@@ -117,3 +117,8 @@ excerpt:
   excerpt_excludes: []    # 不生成摘录的页面列表
   more_excludes: []       # 不使用<!-- more -->标签的页面列表
   hideWholePostExcerpts: true # 是否隐藏全文摘录（当文章较短时，可能不需要摘录）
+
+hexo_markmap:
+  darkThemeCssSelector: '.dark'
+  CDN: 'fastly' 
+  customCDN: 'https://fastly.jsdelivr.net/npm/'

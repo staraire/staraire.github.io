@@ -231,6 +231,8 @@ $ npm install hexo-renderer-sass-next --save
 | `hexo-generator-searchdb` | `^1.4.1` | 将搜索数据存入数据库（与搜索插件配套使用） |
 | `hexo-wordcount` | `^6.0.1` | **统计文章字数/阅读时长**（用于主题显示） |
 | `hexo-excerpt`|`^1.3.1`|文章摘录缩起|
+| `hexo-image-link`|`^0.0.6`|处理站内图片链接|
+
 
 
 ### **五、主题相关**
