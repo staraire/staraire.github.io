@@ -4,9 +4,14 @@
     <title>Zephyr入门 移植正点原子探索者STM32F407</title>
     <url>/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/</url>
     <content><![CDATA[<blockquote>
-<p>环境: <code>WSL2 ubuntu20.4</code><br>开发板: 正点原子探索者<code>STM32F407</code></p>
+<p>环境: <code>Windows</code>/<code>WSL2 ubuntu20.4</code><br>开发板: 正点原子探索者<code>STM32F407</code></p>
+</blockquote>
+<blockquote>
+<p>在嵌入式开发领域，<strong>Zephyr RTOS</strong> 是一个轻量级、模块化且高度可定制的实时操作系统（RTOS），专为资源受限的物联网（IoT）和嵌入式设备设计。</p>
 </blockquote>
 <span id="more"></span>
+
+
 
 <h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><blockquote>
 <p>参考官方文档&lt;<a href="https://docs.zephyrproject.org/latest/develop/getting_started/index.html">Getting Started Guide</a>&gt;</p>
@@ -174,9 +179,15 @@
 <figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="symbol">green_led_4:</span> <span class="title class_">led_4</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">gpios</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;gpiof</span> <span class="number">9</span> GPIO_ACTIVE_LOW&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">label</span> <span class="operator">=</span> <span class="string">"User LD4"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>修改设备树里的外部时钟和系统时钟, HSE时钟晶振为<code>25M</code></p>
+<blockquote>
+<p>❗这里根据实际晶振数值来, 如果晶振是8M就不用改</p>
+</blockquote>
 <figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="variable">&amp;clk_hse</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">clock-frequency</span> <span class="operator">=</span> <span class="params">&lt;DT_FREQ_M(<span class="number">25</span>)&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&amp;rcc</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">clocks</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;pll</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">clock-frequency</span> <span class="operator">=</span> <span class="params">&lt;DT_FREQ_M(<span class="number">168</span>)&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">ahb-prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">1</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	apb1-<span class="attr">prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">4</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	apb2-<span class="attr">prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">2</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>修改锁相环PLL参数</p>
+<blockquote>
+<p>❗这里根据实际晶振数值来, 如果晶振是8M就不用改</p>
+</blockquote>
 <figure class="highlight dts"><table><tr><td class="code"><pre><span class="line"><span class="variable">&amp;pll</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">div-m</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">25</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">mul-n</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">336</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">div-p</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">2</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">div-q</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">7</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">clocks</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;clk_hse</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br></pre></td></tr></table></figure>
 
 
@@ -196,6 +207,58 @@
 <img data-src="/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-15-58-38.png" class="">
 
 <p>观察开发板灯闪烁</p>
+<h3 id="适配串口打印"><a href="#适配串口打印" class="headerlink" title="适配串口打印"></a>适配串口打印</h3><blockquote>
+<p>正点原子的打印串口连接的是UART1</p>
+</blockquote>
+<p>所以修改设备树, 增加如下代码</p>
+<figure class="highlight dts"><table><tr><td class="code"><pre><span class="line">	<span class="title class_">chosen</span> <span class="punctuation">{</span></span><br><span class="line">		<span class="attr">zephyr,console</span> <span class="operator">=</span> <span class="variable">&amp;usart1</span><span class="punctuation">;</span></span><br><span class="line">		<span class="attr">zephyr,shell-uart</span> <span class="operator">=</span> <span class="variable">&amp;usart1</span><span class="punctuation">;</span></span><br><span class="line">		...</span><br><span class="line">	<span class="punctuation">};</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="variable">&amp;usart1</span> <span class="punctuation">{</span></span><br><span class="line">    pinctrl<span class="number">-0</span> = <span class="params">&lt;<span class="variable">&amp;usart1_tx_pa9</span> <span class="variable">&amp;usart1_rx_pa10</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">pinctrl-names</span> <span class="operator">=</span> <span class="string">"default"</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">current-speed</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">115200</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编译, 烧录, 测试如下</p>
+<img data-src="/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-23-10-58-43.png" class="">
+
+
+<h2 id="补充-windows搭建开发环境"><a href="#补充-windows搭建开发环境" class="headerlink" title="补充: windows搭建开发环境"></a>补充: windows搭建开发环境</h2><blockquote>
+<p>实测windows编译速度比不上linux, 所以还是推荐用linux做开发</p>
+</blockquote>
+<ul>
+<li>打开cmd, 安装必要的包</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Python.Python.3.12 Git.Git oss-winget.dtc wget 7zip.7zip</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证工具版本</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">cmake --version</span><br><span class="line">python --version</span><br><span class="line">dtc --version</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>激活<code>python</code>虚拟环境</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$Env</span>:HOMEPATH // 可以选择自己的路径</span><br><span class="line">python -m venv zephyrproject\.venv</span><br><span class="line">zephyrproject\.venv\Scripts\Activate.ps1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">pip install west</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">west init zephyrproject</span><br><span class="line"><span class="built_in">cd</span> zephyrproject</span><br><span class="line">west update</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">west zephyr-export</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">python -m pip install @((west packages pip) -split ' ')</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装SDK</li>
+</ul>
+<blockquote>
+<p>因为按照SDK会默认安装在C盘路径(不在乎空间占用的可以默认), 所以采用手动安装<br>参考: <a href="https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#toolchain-zephyr-sdk-install">https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#toolchain-zephyr-sdk-install</a>  </p>
+</blockquote>
+<p>下载SDK包, 解压后进入执行<code>./setup.cmd</code><br>然后注册<code>ZEPHYR_SDK_INSTALL_DIR</code>环境变量, 注册上面SDK存放的路径<br>注册完之后要重新打开终端  </p>
+<ul>
+<li>进入zephyr路径, 编译测试</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">west build -p always -b stm32f4_disco samples/basic/blinky</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="📌参考资料"><a href="#📌参考资料" class="headerlink" title="📌参考资料"></a>📌参考资料</h2><ul>
 <li><a href="https://docs.zephyrproject.org/latest/">zephyr官方文档</a></li>
 </ul>

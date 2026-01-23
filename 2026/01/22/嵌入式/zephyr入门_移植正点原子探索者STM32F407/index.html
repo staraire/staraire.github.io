@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"staraire.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="环境: WSL2 ubuntu20.4开发板: 正点原子探索者STM32F407">
+    <meta name="description" content="环境: Windows&#x2F;WSL2 ubuntu20.4开发板: 正点原子探索者STM32F407   在嵌入式开发领域，Zephyr RTOS 是一个轻量级、模块化且高度可定制的实时操作系统（RTOS），专为资源受限的物联网（IoT）和嵌入式设备设计。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Zephyr入门 移植正点原子探索者STM32F407">
 <meta property="og:url" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/index.html">
 <meta property="og:site_name" content="StarAire&#39;s Blog">
-<meta property="og:description" content="环境: WSL2 ubuntu20.4开发板: 正点原子探索者STM32F407">
+<meta property="og:description" content="环境: Windows&#x2F;WSL2 ubuntu20.4开发板: 正点原子探索者STM32F407   在嵌入式开发领域，Zephyr RTOS 是一个轻量级、模块化且高度可定制的实时操作系统（RTOS），专为资源受限的物联网（IoT）和嵌入式设备设计。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-14-35-47.png">
 <meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-14-37-34.png">
@@ -33,8 +33,9 @@
 <meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-14-45-21.png">
 <meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-15-58-08.png">
 <meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-15-58-38.png">
+<meta property="og:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-23-10-58-43.png">
 <meta property="article:published_time" content="2026-01-22T10:30:47.000Z">
-<meta property="article:modified_time" content="2026-01-22T08:14:05.889Z">
+<meta property="article:modified_time" content="2026-01-23T03:13:21.391Z">
 <meta property="article:author" content="StarAire">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://staraire.github.io/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-14-35-47.png">
@@ -288,7 +289,7 @@ mjx-container[display="true"] + br {
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">搭建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">ubuntu安装工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8B%89%E5%8F%96%E6%BA%90%E7%A0%81%E5%92%8C%E5%8C%85-%E5%AE%89%E8%A3%85SDK"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟环境拉取源码和包 &amp; 安装SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85USB%E9%80%8F%E4%BC%A0%E5%B7%A5%E5%85%B7-ST-LINK%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.</span> <span class="nav-text">安装USB透传工具 &amp; ST-LINK下载工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85USB%E9%80%8F%E4%BC%A0%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装USB透传工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ST-LINK%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.2.</span> <span class="nav-text">安装ST-LINK下载工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B%E7%83%A7%E5%BD%95%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">编译工程烧录测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">适配正点原子探索者开发板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">📌参考资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">搭建开发环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ubuntu%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7%E5%8C%85"><span class="nav-number">1.1.</span> <span class="nav-text">ubuntu安装工具包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E6%8B%89%E5%8F%96%E6%BA%90%E7%A0%81%E5%92%8C%E5%8C%85-%E5%AE%89%E8%A3%85SDK"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟环境拉取源码和包 &amp; 安装SDK</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85USB%E9%80%8F%E4%BC%A0%E5%B7%A5%E5%85%B7-ST-LINK%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.</span> <span class="nav-text">安装USB透传工具 &amp; ST-LINK下载工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85USB%E9%80%8F%E4%BC%A0%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装USB透传工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ST-LINK%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7"><span class="nav-number">1.3.2.</span> <span class="nav-text">安装ST-LINK下载工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%B7%A5%E7%A8%8B%E7%83%A7%E5%BD%95%E6%B5%8B%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">编译工程烧录测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85%E5%BC%80%E5%8F%91%E6%9D%BF"><span class="nav-number">2.</span> <span class="nav-text">适配正点原子探索者开发板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E9%85%8D%E4%B8%B2%E5%8F%A3%E6%89%93%E5%8D%B0"><span class="nav-number">2.1.</span> <span class="nav-text">适配串口打印</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85-windows%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="nav-number">3.</span> <span class="nav-text">补充: windows搭建开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8C%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">📌参考资料</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -372,9 +373,15 @@ mjx-container[display="true"] + br {
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-01-22 10:30:47 / 修改时间：08:14:05" itemprop="dateCreated datePublished" datetime="2026-01-22T10:30:47+00:00">2026-01-22</time>
+      <time title="创建时间：2026-01-22 10:30:47" itemprop="dateCreated datePublished" datetime="2026-01-22T10:30:47+00:00">2026-01-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-01-23 03:13:21" itemprop="dateModified" datetime="2026-01-23T03:13:21+00:00">2026-01-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -393,14 +400,14 @@ mjx-container[display="true"] + br {
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>948</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -411,9 +418,14 @@ mjx-container[display="true"] + br {
     
     
     <div class="post-body" itemprop="articleBody"><blockquote>
-<p>环境: <code>WSL2 ubuntu20.4</code><br>开发板: 正点原子探索者<code>STM32F407</code></p>
+<p>环境: <code>Windows</code>/<code>WSL2 ubuntu20.4</code><br>开发板: 正点原子探索者<code>STM32F407</code></p>
+</blockquote>
+<blockquote>
+<p>在嵌入式开发领域，<strong>Zephyr RTOS</strong> 是一个轻量级、模块化且高度可定制的实时操作系统（RTOS），专为资源受限的物联网（IoT）和嵌入式设备设计。</p>
 </blockquote>
 <span id="more"></span>
+
+
 
 <h2 id="搭建开发环境"><a href="#搭建开发环境" class="headerlink" title="搭建开发环境"></a>搭建开发环境</h2><blockquote>
 <p>参考官方文档&lt;<a target="_blank" rel="noopener" href="https://docs.zephyrproject.org/latest/develop/getting_started/index.html">Getting Started Guide</a>&gt;</p>
@@ -581,9 +593,15 @@ mjx-container[display="true"] + br {
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">green_led_4:</span> <span class="title class_">led_4</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">gpios</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;gpiof</span> <span class="number">9</span> GPIO_ACTIVE_LOW&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">label</span> <span class="operator">=</span> <span class="string">"User LD4"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>修改设备树里的外部时钟和系统时钟, HSE时钟晶振为<code>25M</code></p>
+<blockquote>
+<p>❗这里根据实际晶振数值来, 如果晶振是8M就不用改</p>
+</blockquote>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&amp;clk_hse</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">clock-frequency</span> <span class="operator">=</span> <span class="params">&lt;DT_FREQ_M(<span class="number">25</span>)&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br><span class="line"><span class="variable">&amp;rcc</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">clocks</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;pll</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">clock-frequency</span> <span class="operator">=</span> <span class="params">&lt;DT_FREQ_M(<span class="number">168</span>)&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">ahb-prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">1</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	apb1-<span class="attr">prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">4</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	apb2-<span class="attr">prescaler</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">2</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>修改锁相环PLL参数</p>
+<blockquote>
+<p>❗这里根据实际晶振数值来, 如果晶振是8M就不用改</p>
+</blockquote>
 <figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&amp;pll</span> <span class="punctuation">{</span></span><br><span class="line">	<span class="attr">div-m</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">25</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">mul-n</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">336</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">div-p</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">2</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">div-q</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">7</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">clocks</span> <span class="operator">=</span> <span class="params">&lt;<span class="variable">&amp;clk_hse</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">	<span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br></pre></td></tr></table></figure>
 
 
@@ -603,6 +621,58 @@ mjx-container[display="true"] + br {
 <img data-src="/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-22-15-58-38.png" class="">
 
 <p>观察开发板灯闪烁</p>
+<h3 id="适配串口打印"><a href="#适配串口打印" class="headerlink" title="适配串口打印"></a>适配串口打印</h3><blockquote>
+<p>正点原子的打印串口连接的是UART1</p>
+</blockquote>
+<p>所以修改设备树, 增加如下代码</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">	<span class="title class_">chosen</span> <span class="punctuation">{</span></span><br><span class="line">		<span class="attr">zephyr,console</span> <span class="operator">=</span> <span class="variable">&amp;usart1</span><span class="punctuation">;</span></span><br><span class="line">		<span class="attr">zephyr,shell-uart</span> <span class="operator">=</span> <span class="variable">&amp;usart1</span><span class="punctuation">;</span></span><br><span class="line">		...</span><br><span class="line">	<span class="punctuation">};</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"><span class="variable">&amp;usart1</span> <span class="punctuation">{</span></span><br><span class="line">    pinctrl<span class="number">-0</span> = <span class="params">&lt;<span class="variable">&amp;usart1_tx_pa9</span> <span class="variable">&amp;usart1_rx_pa10</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">pinctrl-names</span> <span class="operator">=</span> <span class="string">"default"</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">current-speed</span> <span class="operator">=</span> <span class="params">&lt;<span class="number">115200</span>&gt;</span><span class="punctuation">;</span></span><br><span class="line">    <span class="attr">status</span> <span class="operator">=</span> <span class="string">"okay"</span><span class="punctuation">;</span></span><br><span class="line"><span class="punctuation">};</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编译, 烧录, 测试如下</p>
+<img data-src="/2026/01/22/%E5%B5%8C%E5%85%A5%E5%BC%8F/zephyr%E5%85%A5%E9%97%A8_%E7%A7%BB%E6%A4%8D%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90%E6%8E%A2%E7%B4%A2%E8%80%85STM32F407/2026-01-23-10-58-43.png" class="">
+
+
+<h2 id="补充-windows搭建开发环境"><a href="#补充-windows搭建开发环境" class="headerlink" title="补充: windows搭建开发环境"></a>补充: windows搭建开发环境</h2><blockquote>
+<p>实测windows编译速度比不上linux, 所以还是推荐用linux做开发</p>
+</blockquote>
+<ul>
+<li>打开cmd, 安装必要的包</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Python.Python.3.12 Git.Git oss-winget.dtc wget 7zip.7zip</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证工具版本</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmake --version</span><br><span class="line">python --version</span><br><span class="line">dtc --version</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>激活<code>python</code>虚拟环境</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="variable">$Env</span>:HOMEPATH // 可以选择自己的路径</span><br><span class="line">python -m venv zephyrproject\.venv</span><br><span class="line">zephyrproject\.venv\Scripts\Activate.ps1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install west</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">west init zephyrproject</span><br><span class="line"><span class="built_in">cd</span> zephyrproject</span><br><span class="line">west update</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">west zephyr-export</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install @((west packages pip) -split ' ')</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装SDK</li>
+</ul>
+<blockquote>
+<p>因为按照SDK会默认安装在C盘路径(不在乎空间占用的可以默认), 所以采用手动安装<br>参考: <a target="_blank" rel="noopener" href="https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#toolchain-zephyr-sdk-install">https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#toolchain-zephyr-sdk-install</a>  </p>
+</blockquote>
+<p>下载SDK包, 解压后进入执行<code>./setup.cmd</code><br>然后注册<code>ZEPHYR_SDK_INSTALL_DIR</code>环境变量, 注册上面SDK存放的路径<br>注册完之后要重新打开终端  </p>
+<ul>
+<li>进入zephyr路径, 编译测试</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">west build -p always -b stm32f4_disco samples/basic/blinky</span><br></pre></td></tr></table></figure>
+
+
 <h2 id="📌参考资料"><a href="#📌参考资料" class="headerlink" title="📌参考资料"></a>📌参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://docs.zephyrproject.org/latest/">zephyr官方文档</a></li>
 </ul>
@@ -674,7 +744,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3 分钟</span>
+    <span title="站点阅读时长">5 分钟</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
