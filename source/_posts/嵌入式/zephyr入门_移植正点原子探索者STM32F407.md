@@ -8,10 +8,14 @@ mathjax: true
 ---
 
 
-> 环境: `WSL2 ubuntu20.4`
+> 环境: `Windows`/`WSL2 ubuntu20.4`  
 > 开发板: 正点原子探索者`STM32F407`
 
+> 在嵌入式开发领域，**Zephyr RTOS** 是一个轻量级、模块化且高度可定制的实时操作系统（RTOS），专为资源受限的物联网（IoT）和嵌入式设备设计。
+
 <!-- more -->
+
+
 
 ## 搭建开发环境
 
@@ -247,6 +251,8 @@ CONFIG_GPIO=y
 
 修改设备树里的外部时钟和系统时钟, HSE时钟晶振为`25M`
 
+> ❗这里根据实际晶振数值来, 如果晶振是8M就不用改
+
 ```dts
 &clk_hse {
 	clock-frequency = <DT_FREQ_M(25)>;
@@ -264,6 +270,8 @@ CONFIG_GPIO=y
 ```
 
 修改锁相环PLL参数
+
+> ❗这里根据实际晶振数值来, 如果晶振是8M就不用改
 
 ```dts
 &pll {
@@ -316,6 +324,94 @@ west flash
 
 观察开发板灯闪烁
 
+### 适配串口打印
+
+> 正点原子的打印串口连接的是UART1
+
+所以修改设备树, 增加如下代码
+
+```dts
+	chosen {
+		zephyr,console = &usart1;
+		zephyr,shell-uart = &usart1;
+		...
+	};
+
+...
+&usart1 {
+    pinctrl-0 = <&usart1_tx_pa9 &usart1_rx_pa10>;
+    pinctrl-names = "default";
+    current-speed = <115200>;
+    status = "okay";
+};
+
+```
+
+编译, 烧录, 测试如下
+
+![](zephyr入门_移植正点原子探索者STM32F407/2026-01-23-10-58-43.png)
+
+
+## 补充: windows搭建开发环境
+
+> 实测windows编译速度比不上linux, 所以还是推荐用linux做开发
+
+- 打开cmd, 安装必要的包
+
+```sh
+winget install Kitware.CMake Ninja-build.Ninja oss-winget.gperf Python.Python.3.12 Git.Git oss-winget.dtc wget 7zip.7zip
+```
+
+- 验证工具版本
+
+```sh
+cmake --version
+python --version
+dtc --version
+```
+
+- 激活`python`虚拟环境
+
+```sh
+cd $Env:HOMEPATH // 可以选择自己的路径
+python -m venv zephyrproject\.venv
+zephyrproject\.venv\Scripts\Activate.ps1
+```
+
+- 安装
+
+```sh
+pip install west
+```
+
+```sh
+west init zephyrproject
+cd zephyrproject
+west update
+```
+
+```sh
+west zephyr-export
+```
+
+```sh
+python -m pip install @((west packages pip) -split ' ')
+```
+
+- 安装SDK
+
+> 因为按照SDK会默认安装在C盘路径(不在乎空间占用的可以默认), 所以采用手动安装  
+参考: https://docs.zephyrproject.org/latest/develop/toolchains/zephyr_sdk.html#toolchain-zephyr-sdk-install  
+
+下载SDK包, 解压后进入执行`./setup.cmd`  
+然后注册`ZEPHYR_SDK_INSTALL_DIR`环境变量, 注册上面SDK存放的路径  
+注册完之后要重新打开终端  
+
+- 进入zephyr路径, 编译测试
+
+```sh
+west build -p always -b stm32f4_disco samples/basic/blinky
+```
 
 
 ## 📌参考资料
